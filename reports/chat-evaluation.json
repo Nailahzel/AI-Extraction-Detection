@@ -1,0 +1,613 @@
+{
+  "scope": "Standard access without bulk passes. Synthetic development scenarios with virtual arrival times. Detection means throttle/block, not a speed bump. No actual waiting, LLM generation, independent holdout, or cloning-success measurement.",
+  "policy": {
+    "version": "chat-heuristics-v2",
+    "window_seconds": 60,
+    "monitor_threshold": 35,
+    "throttle_threshold": 60,
+    "block_threshold": 80,
+    "throttle_seconds": 5,
+    "block_seconds": 30,
+    "speed_bumps": [
+      {
+        "threshold": 40,
+        "seconds": 1
+      },
+      {
+        "threshold": 50,
+        "seconds": 3
+      }
+    ],
+    "bulk_pass": {
+      "max_requests": 30,
+      "max_minutes": 60,
+      "max_concurrency": 2,
+      "repetition_override": 0.65,
+      "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+    },
+    "weights": {
+      "rate": 45,
+      "diversity": 20,
+      "repetition": 35
+    },
+    "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+  },
+  "sessions": 60,
+  "attack_sessions": 36,
+  "detected_attacks": 24,
+  "benign_sessions": 24,
+  "false_positives": 12,
+  "detection_rate": 0.6666666666666666,
+  "false_positive_rate": 0.5,
+  "profiles": {
+    "normal_conversation": {
+      "sessions": 12,
+      "flagged": 0
+    },
+    "legitimate_bulk_questions": {
+      "sessions": 12,
+      "flagged": 12
+    },
+    "repeated_extraction_probes": {
+      "sessions": 12,
+      "flagged": 12
+    },
+    "diverse_extraction_queries": {
+      "sessions": 12,
+      "flagged": 12
+    },
+    "slow_extraction_probes": {
+      "sessions": 12,
+      "flagged": 0
+    }
+  },
+  "limitations": [
+    "A legitimate bulk request and an extraction burst can have identical observable inputs and timing; this detector cannot infer their intent.",
+    "Slow extraction can evade the request-rate component.",
+    "The policy was designed on similar patterns; these are reproducibility checks, not independent accuracy estimates.",
+    "Earlier classifier measurements do not establish protection for the chat language model.",
+    "This baseline does not simulate server-side pacing or trusted bulk approvals. See protection-check.json for separate real-model integration scenarios; those are not an accuracy benchmark."
+  ],
+  "results": [
+    {
+      "seed": 700,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 700,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 700,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 700,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 700,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 701,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 701,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 701,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 701,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 701,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 702,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 702,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 702,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 702,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 702,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 703,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 703,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 703,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 703,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 703,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 704,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 704,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 704,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 704,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 704,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 705,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 705,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 705,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 705,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 705,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 706,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 706,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 706,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 706,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 706,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 707,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 707,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 707,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 707,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.35,
+      "requests": 30,
+      "withheld_by_arrival_policy": 16
+    },
+    {
+      "seed": 707,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 708,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 708,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 708,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 708,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 708,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 709,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 709,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 709,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 709,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 709,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 710,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 710,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 710,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 710,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 710,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 711,
+      "profile": "normal_conversation",
+      "attack": false,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    },
+    {
+      "seed": 711,
+      "profile": "legitimate_bulk_questions",
+      "attack": false,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 711,
+      "profile": "repeated_extraction_probes",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.25,
+      "requests": 30,
+      "withheld_by_arrival_policy": 20
+    },
+    {
+      "seed": 711,
+      "profile": "diverse_extraction_queries",
+      "attack": true,
+      "detected": true,
+      "first_restriction_seconds": 0.375,
+      "requests": 30,
+      "withheld_by_arrival_policy": 15
+    },
+    {
+      "seed": 711,
+      "profile": "slow_extraction_probes",
+      "attack": true,
+      "detected": false,
+      "first_restriction_seconds": null,
+      "requests": 30,
+      "withheld_by_arrival_policy": 0
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "javascript_errors": [],
+  "checks": [
+    "empty, over-30 and overlong inputs rejected before sending",
+    "15 ordinary inputs become 15 ordered API calls with no flag",
+    "30 probing inputs produce real 429 responses and explained alerts",
+    "existing risk and penalties are identified before a new batch",
+    "another key can still receive predictions after batch enforcement",
+    "observe mode raises alerts while all 30 responses remain HTTP 200",
+    "stop preserves completed responses and stops remaining requests",
+    "duplicate submission, reset, mode and simulation controls lock during a batch",
+    "network failure produces an incomplete result without retrying",
+    "missing telemetry preserves the response without inventing a risk score",
+    "pasted HTML is displayed as text",
+    "10 manually pasted inputs complete on mobile",
+    "390px mobile batch layout has no page overflow"
+  ]
+}

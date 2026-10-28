@@ -1,0 +1,36 @@
+{
+  "checks": [
+    "Chat works without operator credentials; monitoring is protected",
+    "Monitoring page contains no chat or prediction input",
+    "Real model answers and normal client stays green",
+    "Real follow-up uses conversation history",
+    "Thirty real HTTP requests raise a red flag and receive 429 restrictions",
+    "Incident evidence remains unchanged during live refresh",
+    "New conversation cannot clear a key restriction",
+    "Another client still gets a real answer while the test client is blocked",
+    "Oversized manual batch is rejected before sending",
+    "Operator can export the chat evidence",
+    "Chat and monitoring layouts fit a mobile viewport",
+    "No browser JavaScript errors"
+  ],
+  "passed": 12,
+  "browser_errors": [],
+  "model": {
+    "name": "Qwen2.5-0.5B-Instruct \u00b7 Q4_K_M",
+    "installed": true,
+    "ready": true,
+    "setup": "python -m scripts.setup_chat"
+  },
+  "alert_visible_seconds": 7.014,
+  "totals": {
+    "requests": 34,
+    "answered": 8,
+    "denied": 26,
+    "errors": 0,
+    "pending": 0,
+    "waiting": 0,
+    "delayed": 2,
+    "delay_ms": 2697.3
+  },
+  "scope": "End-to-end integration with the installed real local model. Not an extraction-success benchmark."
+}

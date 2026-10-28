@@ -1,0 +1,148 @@
+{
+  "saved_at": 1789062179.8171196,
+  "scope": "Real local-model/browser integration on temporary data. Fixed demo scenarios, not a detection-accuracy or copying-success benchmark.",
+  "passed": 13,
+  "checks": [
+    "Protection view explains five response levels without generating traffic",
+    "Chat customer cannot issue passes or inspect operator records",
+    "Real local model answers a normal conversation",
+    "Eight real probes show measured server-side waiting and still receive answers",
+    "Operator issues a 30-request pass from the dashboard",
+    "Approved varied batch returns 30 real answers with no behavioral restriction",
+    "Manual chatbot sees the same allowance and cannot exceed it",
+    "Repeated probing removes approved rate credit and causes a visible restriction",
+    "Manual batch attaches the operator pass and displays its consumed allowance",
+    "Revocation is visible in the dashboard and separate customer page",
+    "Evidence export includes approvals, usage and measured waiting",
+    "Refresh preserves usage and both pages fit a mobile viewport",
+    "No browser JavaScript errors"
+  ],
+  "browser_errors": [],
+  "policy": {
+    "version": "chat-heuristics-v2",
+    "window_seconds": 60,
+    "monitor_threshold": 35,
+    "throttle_threshold": 60,
+    "block_threshold": 80,
+    "throttle_seconds": 5,
+    "block_seconds": 30,
+    "speed_bumps": [
+      {
+        "threshold": 40,
+        "seconds": 1
+      },
+      {
+        "threshold": 50,
+        "seconds": 3
+      }
+    ],
+    "bulk_pass": {
+      "max_requests": 30,
+      "max_minutes": 60,
+      "max_concurrency": 2,
+      "repetition_override": 0.65,
+      "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+    },
+    "weights": {
+      "rate": 45,
+      "diversity": 20,
+      "repetition": 35
+    },
+    "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+  },
+  "runs": [
+    {
+      "id": "demo-7f67fcc7d21046dfa454925e8b1f1662",
+      "running": false,
+      "scenario": "speed_bump",
+      "client_id": "probe-01",
+      "total": 8,
+      "completed": 8,
+      "responses": {
+        "200": 8
+      },
+      "started_at": 1789062111.907226,
+      "bulk_pass_id": null,
+      "finished_at": 1789062127.735979
+    },
+    {
+      "id": "demo-fb28d4a321e7451eb0c2439618ebae0c",
+      "running": false,
+      "scenario": "bulk",
+      "client_id": "batch-01",
+      "total": 30,
+      "completed": 30,
+      "responses": {
+        "200": 30
+      },
+      "started_at": 1789062129.6360793,
+      "bulk_pass_id": "BULK-55cace30a2314062ac922cad9479b0f9",
+      "finished_at": 1789062170.2112134
+    },
+    {
+      "id": "demo-b3c478f713654e46a9001c0a7f721f91",
+      "running": false,
+      "scenario": "probing",
+      "client_id": "attacker-01",
+      "total": 30,
+      "completed": 30,
+      "responses": {
+        "429": 30
+      },
+      "started_at": 1789062171.731553,
+      "bulk_pass_id": "BULK-f568efd930814c02bbd8c0790276d4fa",
+      "finished_at": 1789062173.3123765
+    }
+  ],
+  "totals": {
+    "requests": 72,
+    "answered": 41,
+    "denied": 31,
+    "errors": 0,
+    "pending": 0,
+    "waiting": 0,
+    "delayed": 5,
+    "delay_ms": 11562.9
+  },
+  "bulk_passes": [
+    {
+      "id": "BULK-5ca6becd7e88479ab7cd93d3328b3a4a",
+      "client_id": "normal-02",
+      "limit": 3,
+      "used": 2,
+      "concurrency": 2,
+      "purpose": "Thirty varied questions for a customer demonstration",
+      "issued_at": 1789062174.750514,
+      "expires_at": 1789062774.750514,
+      "revoked_at": 1789062177.4040272,
+      "status": "revoked",
+      "remaining": 1
+    },
+    {
+      "id": "BULK-f568efd930814c02bbd8c0790276d4fa",
+      "client_id": "attacker-01",
+      "limit": 30,
+      "used": 30,
+      "concurrency": 2,
+      "purpose": "Thirty varied questions for a customer demonstration",
+      "issued_at": 1789062171.64805,
+      "expires_at": 1789062771.64805,
+      "revoked_at": null,
+      "status": "exhausted",
+      "remaining": 0
+    },
+    {
+      "id": "BULK-55cace30a2314062ac922cad9479b0f9",
+      "client_id": "batch-01",
+      "limit": 30,
+      "used": 30,
+      "concurrency": 2,
+      "purpose": "Thirty varied questions for a customer demonstration",
+      "issued_at": 1789062129.543427,
+      "expires_at": 1789062729.543427,
+      "revoked_at": null,
+      "status": "exhausted",
+      "remaining": 0
+    }
+  ]
+}

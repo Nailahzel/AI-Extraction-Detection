@@ -1,0 +1,1898 @@
+{
+  "generated_at": "2026-09-10T14:06:23+00:00",
+  "calibration_seed_range": [
+    100,
+    111
+  ],
+  "test_seed_range": [
+    10000,
+    10029
+  ],
+  "model": {
+    "name": "Sentinel / TF-IDF sentiment v2",
+    "training_samples": 2432,
+    "fingerprint": "30691ebf6b7f8aca",
+    "runtime": "Local CPU",
+    "corpus": "Original synthetic demonstration corpus",
+    "similarity": "Hashed lexical word/bigram cosine (not semantic embeddings)"
+  },
+  "policy": {
+    "version": "1.0",
+    "window_seconds": 60,
+    "monitor_threshold": 35,
+    "throttle_threshold": 55,
+    "block_threshold": 80,
+    "cooldown_seconds": 30,
+    "throttle_seconds": 2,
+    "minimum_evidence": 8,
+    "weights": {
+      "rate": 0.25,
+      "diversity": 0.15,
+      "boundary": 0.35,
+      "sequence": 0.25
+    },
+    "provenance": "Throttle threshold chosen on 84 calibration sessions, seeds 100-111; weights fixed before held-out evaluation."
+  },
+  "policy_sha256": "034730e4c774de17080019fae7bd9227cbd6120615e0d853658d6798c0537f88",
+  "calibration": {
+    "selected_threshold": 55,
+    "candidates": [
+      {
+        "threshold": 55,
+        "attack_sessions": 48,
+        "benign_sessions": 36,
+        "detected_attacks": 48,
+        "false_positives": 0,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.9259,
+          1.0
+        ],
+        "false_positive_ci95": [
+          0,
+          0.0964
+        ],
+        "median_detection_seconds": 3.98,
+        "p95_detection_seconds": 14.262
+      },
+      {
+        "threshold": 60,
+        "attack_sessions": 48,
+        "benign_sessions": 36,
+        "detected_attacks": 48,
+        "false_positives": 0,
+        "detection_rate": 1.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.9259,
+          1.0
+        ],
+        "false_positive_ci95": [
+          0,
+          0.0964
+        ],
+        "median_detection_seconds": 4.25,
+        "p95_detection_seconds": 14.262
+      },
+      {
+        "threshold": 65,
+        "attack_sessions": 48,
+        "benign_sessions": 36,
+        "detected_attacks": 36,
+        "false_positives": 0,
+        "detection_rate": 0.75,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.6122,
+          0.8508
+        ],
+        "false_positive_ci95": [
+          0,
+          0.0964
+        ],
+        "median_detection_seconds": 2.569,
+        "p95_detection_seconds": 6.415
+      },
+      {
+        "threshold": 70,
+        "attack_sessions": 48,
+        "benign_sessions": 36,
+        "detected_attacks": 36,
+        "false_positives": 0,
+        "detection_rate": 0.75,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.6122,
+          0.8508
+        ],
+        "false_positive_ci95": [
+          0,
+          0.0964
+        ],
+        "median_detection_seconds": 2.937,
+        "p95_detection_seconds": 6.415
+      },
+      {
+        "threshold": 75,
+        "attack_sessions": 48,
+        "benign_sessions": 36,
+        "detected_attacks": 24,
+        "false_positives": 0,
+        "detection_rate": 0.5,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.3639,
+          0.6361
+        ],
+        "false_positive_ci95": [
+          0,
+          0.0964
+        ],
+        "median_detection_seconds": 4.185,
+        "p95_detection_seconds": 6.464
+      }
+    ]
+  },
+  "test": {
+    "threshold": 55,
+    "attack_sessions": 120,
+    "benign_sessions": 90,
+    "detected_attacks": 120,
+    "false_positives": 0,
+    "detection_rate": 1.0,
+    "false_positive_rate": 0.0,
+    "detection_ci95": [
+      0.969,
+      1
+    ],
+    "false_positive_ci95": [
+      0,
+      0.0409
+    ],
+    "median_detection_seconds": 3.864,
+    "p95_detection_seconds": 13.936,
+    "profiles": [
+      {
+        "profile": "normal",
+        "attack": false,
+        "sessions": 30,
+        "flagged": 0,
+        "median_detection_seconds": null
+      },
+      {
+        "profile": "batch",
+        "attack": false,
+        "sessions": 30,
+        "flagged": 0,
+        "median_detection_seconds": null
+      },
+      {
+        "profile": "neutral",
+        "attack": false,
+        "sessions": 30,
+        "flagged": 0,
+        "median_detection_seconds": null
+      },
+      {
+        "profile": "burst",
+        "attack": true,
+        "sessions": 30,
+        "flagged": 30,
+        "median_detection_seconds": 1.504
+      },
+      {
+        "profile": "boundary",
+        "attack": true,
+        "sessions": 30,
+        "flagged": 30,
+        "median_detection_seconds": 0.882
+      },
+      {
+        "profile": "slow",
+        "attack": true,
+        "sessions": 30,
+        "flagged": 30,
+        "median_detection_seconds": 13.402
+      },
+      {
+        "profile": "distributed",
+        "attack": true,
+        "sessions": 30,
+        "flagged": 30,
+        "median_detection_seconds": 6.241
+      }
+    ],
+    "sessions": [
+      {
+        "profile": "normal",
+        "seed": 10000,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 20.7
+      },
+      {
+        "profile": "normal",
+        "seed": 10001,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 20.8
+      },
+      {
+        "profile": "normal",
+        "seed": 10002,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 13.1
+      },
+      {
+        "profile": "normal",
+        "seed": 10003,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 22.0
+      },
+      {
+        "profile": "normal",
+        "seed": 10004,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 11.4
+      },
+      {
+        "profile": "normal",
+        "seed": 10005,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 21.7
+      },
+      {
+        "profile": "normal",
+        "seed": 10006,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 13.6
+      },
+      {
+        "profile": "normal",
+        "seed": 10007,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 11.9
+      },
+      {
+        "profile": "normal",
+        "seed": 10008,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 10.1
+      },
+      {
+        "profile": "normal",
+        "seed": 10009,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 22.4
+      },
+      {
+        "profile": "normal",
+        "seed": 10010,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 14.8
+      },
+      {
+        "profile": "normal",
+        "seed": 10011,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 11.7
+      },
+      {
+        "profile": "normal",
+        "seed": 10012,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 20.1
+      },
+      {
+        "profile": "normal",
+        "seed": 10013,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 11.9
+      },
+      {
+        "profile": "normal",
+        "seed": 10014,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 16.4
+      },
+      {
+        "profile": "normal",
+        "seed": 10015,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 15.1
+      },
+      {
+        "profile": "normal",
+        "seed": 10016,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 23.5
+      },
+      {
+        "profile": "normal",
+        "seed": 10017,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 20.3
+      },
+      {
+        "profile": "normal",
+        "seed": 10018,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 18.8
+      },
+      {
+        "profile": "normal",
+        "seed": 10019,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 17.1
+      },
+      {
+        "profile": "normal",
+        "seed": 10020,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 18.0
+      },
+      {
+        "profile": "normal",
+        "seed": 10021,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 21.3
+      },
+      {
+        "profile": "normal",
+        "seed": 10022,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 25.3
+      },
+      {
+        "profile": "normal",
+        "seed": 10023,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 11.3
+      },
+      {
+        "profile": "normal",
+        "seed": 10024,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 20.3
+      },
+      {
+        "profile": "normal",
+        "seed": 10025,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 21.0
+      },
+      {
+        "profile": "normal",
+        "seed": 10026,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 22.7
+      },
+      {
+        "profile": "normal",
+        "seed": 10027,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 10.9
+      },
+      {
+        "profile": "normal",
+        "seed": 10028,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 19.8
+      },
+      {
+        "profile": "normal",
+        "seed": 10029,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 22.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10000,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 45.5
+      },
+      {
+        "profile": "batch",
+        "seed": 10001,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.2
+      },
+      {
+        "profile": "batch",
+        "seed": 10002,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.5
+      },
+      {
+        "profile": "batch",
+        "seed": 10003,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10004,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10005,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10006,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.0
+      },
+      {
+        "profile": "batch",
+        "seed": 10007,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.3
+      },
+      {
+        "profile": "batch",
+        "seed": 10008,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.9
+      },
+      {
+        "profile": "batch",
+        "seed": 10009,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 42.0
+      },
+      {
+        "profile": "batch",
+        "seed": 10010,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 47.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10011,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.3
+      },
+      {
+        "profile": "batch",
+        "seed": 10012,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.2
+      },
+      {
+        "profile": "batch",
+        "seed": 10013,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.3
+      },
+      {
+        "profile": "batch",
+        "seed": 10014,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.2
+      },
+      {
+        "profile": "batch",
+        "seed": 10015,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.7
+      },
+      {
+        "profile": "batch",
+        "seed": 10016,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.9
+      },
+      {
+        "profile": "batch",
+        "seed": 10017,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.1
+      },
+      {
+        "profile": "batch",
+        "seed": 10018,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.3
+      },
+      {
+        "profile": "batch",
+        "seed": 10019,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.6
+      },
+      {
+        "profile": "batch",
+        "seed": 10020,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.9
+      },
+      {
+        "profile": "batch",
+        "seed": 10021,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.8
+      },
+      {
+        "profile": "batch",
+        "seed": 10022,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 46.2
+      },
+      {
+        "profile": "batch",
+        "seed": 10023,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 45.3
+      },
+      {
+        "profile": "batch",
+        "seed": 10024,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 43.7
+      },
+      {
+        "profile": "batch",
+        "seed": 10025,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 45.7
+      },
+      {
+        "profile": "batch",
+        "seed": 10026,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.9
+      },
+      {
+        "profile": "batch",
+        "seed": 10027,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 42.9
+      },
+      {
+        "profile": "batch",
+        "seed": 10028,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 45.7
+      },
+      {
+        "profile": "batch",
+        "seed": 10029,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 44.7
+      },
+      {
+        "profile": "neutral",
+        "seed": 10000,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.8
+      },
+      {
+        "profile": "neutral",
+        "seed": 10001,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10002,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10003,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.6
+      },
+      {
+        "profile": "neutral",
+        "seed": 10004,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.4
+      },
+      {
+        "profile": "neutral",
+        "seed": 10005,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.2
+      },
+      {
+        "profile": "neutral",
+        "seed": 10006,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 36.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10007,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.4
+      },
+      {
+        "profile": "neutral",
+        "seed": 10008,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10009,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.0
+      },
+      {
+        "profile": "neutral",
+        "seed": 10010,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.9
+      },
+      {
+        "profile": "neutral",
+        "seed": 10011,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 36.6
+      },
+      {
+        "profile": "neutral",
+        "seed": 10012,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.4
+      },
+      {
+        "profile": "neutral",
+        "seed": 10013,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.2
+      },
+      {
+        "profile": "neutral",
+        "seed": 10014,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.4
+      },
+      {
+        "profile": "neutral",
+        "seed": 10015,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.6
+      },
+      {
+        "profile": "neutral",
+        "seed": 10016,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.6
+      },
+      {
+        "profile": "neutral",
+        "seed": 10017,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.4
+      },
+      {
+        "profile": "neutral",
+        "seed": 10018,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.9
+      },
+      {
+        "profile": "neutral",
+        "seed": 10019,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.0
+      },
+      {
+        "profile": "neutral",
+        "seed": 10020,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.0
+      },
+      {
+        "profile": "neutral",
+        "seed": 10021,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.6
+      },
+      {
+        "profile": "neutral",
+        "seed": 10022,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10023,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.8
+      },
+      {
+        "profile": "neutral",
+        "seed": 10024,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.9
+      },
+      {
+        "profile": "neutral",
+        "seed": 10025,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10026,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 35.0
+      },
+      {
+        "profile": "neutral",
+        "seed": 10027,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 37.9
+      },
+      {
+        "profile": "neutral",
+        "seed": 10028,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 38.3
+      },
+      {
+        "profile": "neutral",
+        "seed": 10029,
+        "attack": false,
+        "detected": false,
+        "time_to_detect": null,
+        "peak_risk": 39.4
+      },
+      {
+        "profile": "burst",
+        "seed": 10000,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.8822,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10001,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.251,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10002,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.5458,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10003,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.54,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10004,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.9415,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10005,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.2815,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10006,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.4203,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10007,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.7343,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10008,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.2666,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10009,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.376,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10010,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.4793,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10011,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.6197,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10012,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.2049,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10013,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.5634,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10014,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.8468,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10015,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.3179,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10016,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.4647,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10017,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.5097,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10018,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.7225,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10019,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.1896,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10020,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.5346,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10021,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.6551,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10022,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.3461,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10023,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.6507,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10024,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.4989,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10025,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.713,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10026,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.2817,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "burst",
+        "seed": 10027,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.4728,
+        "peak_risk": 71.2
+      },
+      {
+        "profile": "burst",
+        "seed": 10028,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.536,
+        "peak_risk": 70.6
+      },
+      {
+        "profile": "burst",
+        "seed": 10029,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.3153,
+        "peak_risk": 71.9
+      },
+      {
+        "profile": "boundary",
+        "seed": 10000,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.0583,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10001,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8816,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10002,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8755,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10003,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.7904,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10004,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 1.0489,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10005,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8809,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10006,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8674,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10007,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8525,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10008,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.873,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10009,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.7896,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10010,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8906,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10011,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9161,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10012,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8792,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10013,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8787,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10014,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9281,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10015,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8093,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10016,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8856,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10017,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9215,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10018,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8832,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10019,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8086,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10020,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9844,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10021,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9774,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10022,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9678,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10023,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9763,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10024,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8106,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10025,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.914,
+        "peak_risk": 75.8
+      },
+      {
+        "profile": "boundary",
+        "seed": 10026,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8862,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "boundary",
+        "seed": 10027,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.8597,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10028,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.7521,
+        "peak_risk": 76.1
+      },
+      {
+        "profile": "boundary",
+        "seed": 10029,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 0.9404,
+        "peak_risk": 76.0
+      },
+      {
+        "profile": "slow",
+        "seed": 10000,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.9848,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10001,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.3943,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10002,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.3392,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10003,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.5739,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10004,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.8997,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10005,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.388,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10006,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.2663,
+        "peak_risk": 61.2
+      },
+      {
+        "profile": "slow",
+        "seed": 10007,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.1328,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10008,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.3171,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10009,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.5667,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10010,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.4753,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10011,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.705,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10012,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.3729,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10013,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.368,
+        "peak_risk": 61.2
+      },
+      {
+        "profile": "slow",
+        "seed": 10014,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.8133,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10015,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.7438,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10016,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.4303,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10017,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.7534,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10018,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.4089,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10019,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.7372,
+        "peak_risk": 61.2
+      },
+      {
+        "profile": "slow",
+        "seed": 10020,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.3199,
+        "peak_risk": 61.2
+      },
+      {
+        "profile": "slow",
+        "seed": 10021,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.2568,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10022,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.1698,
+        "peak_risk": 61.0
+      },
+      {
+        "profile": "slow",
+        "seed": 10023,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 14.2463,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10024,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.7556,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10025,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.6861,
+        "peak_risk": 60.9
+      },
+      {
+        "profile": "slow",
+        "seed": 10026,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.4358,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10027,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.1975,
+        "peak_risk": 61.2
+      },
+      {
+        "profile": "slow",
+        "seed": 10028,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 12.2285,
+        "peak_risk": 61.1
+      },
+      {
+        "profile": "slow",
+        "seed": 10029,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 13.9233,
+        "peak_risk": 61.0
+      },
+      {
+        "profile": "distributed",
+        "seed": 10000,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.6053,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10001,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2145,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10002,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.4039,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10003,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2802,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10004,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.8195,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10005,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2271,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10006,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.1339,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10007,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.3518,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10008,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.1616,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10009,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 5.787,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10010,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2113,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10011,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.1154,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10012,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.0148,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10013,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.3034,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10014,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.658,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10015,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.214,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10016,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.1323,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10017,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2944,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10018,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2812,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10019,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.0575,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10020,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2521,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10021,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2629,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10022,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.4175,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10023,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.4621,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10024,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.0659,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10025,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.3965,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10026,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.1384,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10027,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.2301,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10028,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 5.9827,
+        "peak_risk": 82.5
+      },
+      {
+        "profile": "distributed",
+        "seed": 10029,
+        "attack": true,
+        "detected": true,
+        "time_to_detect": 6.3019,
+        "peak_risk": 82.5
+      }
+    ]
+  },
+  "methodology": "Replay 45-second sessions on a virtual clock using the production detector in observe mode. Detection is any score at or above the frozen throttle threshold. The 25/15/35/25 signal weights are fixed; only the throttle threshold is selected on calibration traffic. Final test seeds and subject words are disjoint from calibration and the development pilot (seeds 1000-1019), which revealed invalid boundary probes. Final test labels never enter the detector. A campaign is one attack session, not three independent sessions. Detection timing is simulated arrival time, not a hardware latency measurement. The v2 sentiment update reuses the previously inspected v1 holdout as a fixed regression suite; these are not new unseen test sessions. Sarcasm regression examples are separate from this extraction-traffic benchmark.",
+  "limitations": [
+    "Synthetic traffic is narrower than real-world API behavior; shared generator families can overestimate generalization.",
+    "Low-and-slow attacks may take longer than the ten-second demonstration target or evade detection.",
+    "The local sentiment model is trained on original synthetic examples; its probabilities are not calibrated on real customer data.",
+    "Cross-key correlation requires overlapping normalized inputs and can miss non-overlapping campaigns or flag similar benign automation.",
+    "In-memory windows and penalties reset on server restart; SQLite audit records persist. This single-process prototype is not a distributed production gateway."
+  ],
+  "evaluation_kind": "regression"
+}

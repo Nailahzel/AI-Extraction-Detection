@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Apocalypse · Dashboard</title>
+    <meta name="theme-color" content="#081725" />
+    <link rel="icon" href="/static/chat-favicon.svg?v=apocalypse-1" />
+    <link rel="stylesheet" href="/static/monitor.css?v=apocalypse-3" />
+    <link rel="stylesheet" href="/static/protection.css?v=apocalypse-3" />
+    <script src="/static/protection.js?v=apocalypse-3" defer></script>
+    <script src="/static/feature-demo.js?v=apocalypse-3" defer></script>
+    <script src="/static/monitor.js?v=apocalypse-3" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="/dashboard" class="brand" aria-label="Apocalypse dashboard"
+        ><span class="brand-icon" aria-hidden="true">α</span
+        ><span class="wordmark">Apocalypse</span
+        ><span class="brand-context">/ dashboard</span></a
+      >
+      <nav>
+        <a href="/classifier-lab">Classifier lab</a
+        ><a href="/chat" class="open-chat" target="_blank" rel="noopener"
+          >Open chatbot ↗</a
+        >
+      </nav>
+    </header>
+    <main>
+      <div class="page-heading">
+        <div>
+          <h1 id="page-title">Dashboard</h1>
+          <p id="page-description">
+            Watch the chatbot’s traffic, investigate patterns, and see which
+            answers were withheld.
+          </p>
+        </div>
+        <div class="connection">
+          <span id="connection">Connecting…</span
+          ><small id="last-updated">Waiting for the server</small>
+        </div>
+      </div>
+      <form id="operator-form" class="operator" hidden>
+        <label for="operator-token">Operator access</label
+        ><input
+          id="operator-token"
+          type="password"
+          autocomplete="off"
+          placeholder="Operator token"
+          required
+        /><button type="submit">Connect</button
+        ><span id="auth-message"
+          >In local demo mode, refresh this page to renew access.</span
+        >
+      </form>
+      <nav class="view-switch" aria-label="Dashboard views">
+        <a id="live-tab" href="#live" aria-current="page">Live monitoring</a>
+        <a href="#protection">Speed bumps &amp; bulk passes</a>
+        <a href="#feature-demo">Chatbot demo</a>
+      </nav>
+      <div id="live-view">
+        <section class="metrics" aria-label="Chat activity this server session">
+          <article>
+            <span>CHAT REQUESTS</span><strong id="total-requests">0</strong
+            ><small>This server session</small>
+          </article>
+          <article>
+            <span>ANSWERS RELEASED</span><strong id="total-answered">0</strong
+            ><small>Actually returned to clients</small>
+          </article>
+          <article>
+            <span>ANSWERS WITHHELD</span><strong id="total-denied">0</strong
+            ><small>Throttled or temporarily blocked</small>
+          </article>
+          <article>
+            <span>CLIENTS RESTRICTED</span><strong id="total-flagged">0</strong
+            ><small id="queue-status">0 processing · 0 errors</small>
+          </article>
+        </section>
+        <div class="monitor-grid">
+          <section class="panel clients-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Client activity</h2>
+              </div>
+              <span class="tag">LIVE</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Requests</th>
+                    <th>Risk / 100</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="clients"></tbody>
+              </table>
+            </div>
+          </section>
+          <section class="panel alerts-panel" id="live-alerts">
+            <div class="panel-heading">
+              <div>
+                <h2>Red flags</h2>
+                <p>Evidence captured when a restriction begins.</p>
+              </div>
+              <span id="alert-count" class="count">0</span>
+            </div>
+            <div id="alerts" class="alerts">
+              <p class="empty">
+                No red flags yet. Normal chat activity appears below.
+              </p>
+            </div>
+          </section>
+        </div>
+        <section class="panel" id="live-results">
+          <div class="panel-heading activity-heading">
+            <div>
+              <h2>Questions &amp; results</h2>
+              <p>
+                Latest 100 requests. Questions and replies are stored locally
+                for operator review.
+              </p>
+            </div>
+            <div class="activity-tools">
+              <label class="sr-only" for="event-filter">Filter results</label
+              ><select id="event-filter">
+                <option value="all">All results</option>
+                <option value="answered">Answered</option>
+                <option value="withheld">Withheld</option>
+                <option value="error">Errors</option>
+                <option value="pending">Processing</option></select
+              ><button id="export" type="button">Export evidence ↓</button>
+            </div>
+          </div>
+          <div id="events" class="events">
+            <p class="empty">
+              Open the chatbot and send a message to see it here.
+            </p>
+          </div>
+        </section>
+        <section class="panel protection-panel" id="protection">
+          <div class="panel-heading">
+            <div>
+              <h2>Speed bumps &amp; bulk passes</h2>
+            </div>
+          </div>
+          <div
+            id="protection-stages"
+            class="protection-stages"
+            aria-label="Increasing response levels"
+          ></div>
+          <div class="protection-stats" aria-live="polite">
+            <div><strong id="speed-waiting">0</strong><span>Waiting</span></div>
+            <div>
+              <strong id="speed-delayed">0</strong><span>Delayed requests</span>
+            </div>
+            <div>
+              <strong id="speed-time">0 s</strong><span>Total wait time</span>
+            </div>
+            <div>
+              <strong id="bulk-active">0</strong><span>Active bulk passes</span>
+            </div>
+          </div>
+          <div class="protection-columns">
+            <article>
+              <h3>Bulk pass</h3>
+              <form id="bulk-pass-form" class="protection-form">
+                <label>Client<select id="bulk-client" required></select></label>
+                <div class="form-pair">
+                  <label
+                    >Requests<input
+                      id="bulk-limit"
+                      type="number"
+                      min="1"
+                      max="30"
+                      value="30"
+                      required
+                  /></label>
+                  <label
+                    >Minutes<input
+                      id="bulk-minutes"
+                      type="number"
+                      min="1"
+                      max="60"
+                      value="10"
+                      required
+                  /></label>
+                </div>
+                <details id="bulk-options" class="bulk-options">
+                  <summary>More options</summary>
+                  <div class="form-pair">
+                    <label
+                      >At a time<select id="bulk-concurrency">
+                        <option value="2">2 at a time</option>
+                        <option value="1">1 at a time</option>
+                      </select></label
+                    >
+                    <label
+                      >Purpose<input
+                        id="bulk-purpose"
+                        maxlength="160"
+                        minlength="3"
+                        value="Demo batch"
+                        required
+                    /></label>
+                  </div>
+                </details>
+                <button id="issue-bulk-pass" type="submit">
+                  Approve bulk pass
+                </button>
+              </form>
+            </article>
+          </div>
+          <p
+            id="protection-feedback"
+            class="protection-feedback"
+            role="status"
+          ></p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Client / purpose</th>
+                  <th>Pass usage</th>
+                  <th>Expires</th>
+                  <th>Status / control</th>
+                </tr>
+              </thead>
+              <tbody id="bulk-pass-list"></tbody>
+            </table>
+          </div>
+          <h3 class="queue-heading">Live request queue</h3>
+          <div id="protection-queue" class="protection-queue">
+            <p class="empty">No requests waiting.</p>
+          </div>
+        </section>
+        <section class="panel feature-demo-panel" id="feature-demo">
+          <div class="panel-heading">
+            <div>
+              <h2>Saved demo results</h2>
+              <p id="feature-demo-status">Loading results…</p>
+            </div>
+          </div>
+          <div id="feature-demo-list" class="feature-demo-list"></div>
+        </section>
+      </div>
+      <footer>
+        <div>
+          <span id="runtime-name">Local language model</span>
+          <p id="runtime-status">Checking runtime…</p>
+        </div>
+      </footer>
+    </main>
+    <dialog id="detail-dialog">
+      <div class="dialog-heading">
+        <h2 id="detail-title">Request evidence</h2>
+        <button id="close-detail" aria-label="Close details">×</button>
+      </div>
+      <div id="detail-body"></div>
+    </dialog>
+    <div id="notification" role="status"></div>
+  </body>
+</html>

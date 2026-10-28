@@ -1,0 +1,656 @@
+{
+  "frozen_at": "2026-09-10T14:17:38.463878+00:00",
+  "calibration_sha256": "a4bcbd0e34eebb8d2a8fccc35cde41c43e4a1078cacc920c9b05ed5eeccd731a",
+  "engine_sha256": "6d3381054b6e41805150ea136bf21124e73e475781866e70ae1a9ae6b6e83126",
+  "generator_sha256": "e4e399c5d7dda9a2784a2b30b4480be1536bdb79731997d9f27488e753e21181",
+  "calibration_seeds": [
+    210,
+    213
+  ],
+  "challenge_seeds": [
+    31000,
+    31005
+  ],
+  "policy": {
+    "version": "1.0",
+    "window_seconds": 60,
+    "monitor_threshold": 35,
+    "throttle_threshold": 55,
+    "block_threshold": 80,
+    "cooldown_seconds": 30,
+    "throttle_seconds": 2,
+    "minimum_evidence": 8,
+    "weights": {
+      "rate": 0.25,
+      "diversity": 0.15,
+      "boundary": 0.35,
+      "sequence": 0.25
+    },
+    "provenance": "Throttle threshold chosen on 84 calibration sessions, seeds 100-111; weights fixed before held-out evaluation."
+  },
+  "model": {
+    "name": "Sentinel / TF-IDF sentiment v2",
+    "training_samples": 2432,
+    "fingerprint": "30691ebf6b7f8aca",
+    "runtime": "Local CPU",
+    "corpus": "Original synthetic demonstration corpus",
+    "similarity": "Hashed lexical word/bigram cosine (not semantic embeddings)"
+  },
+  "settings": {
+    "disabled": null,
+    "rate_only": 160,
+    "four_signals": 55,
+    "full": 55
+  },
+  "candidates": {
+    "rate_only": [
+      {
+        "setting": 5,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 20,
+        "false_positives": 12,
+        "detection_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "detection_ci95": [
+          0.8389,
+          1
+        ],
+        "false_positive_ci95": [
+          0.7575,
+          1
+        ],
+        "median_detection_seconds": 9.75,
+        "legitimate_allowed": 100,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 10,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 20,
+        "false_positives": 12,
+        "detection_rate": 1.0,
+        "false_positive_rate": 1.0,
+        "detection_ci95": [
+          0.8389,
+          1
+        ],
+        "false_positive_ci95": [
+          0.7575,
+          1
+        ],
+        "median_detection_seconds": 19.5,
+        "legitimate_allowed": 200,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 20,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 8,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 4.0,
+        "legitimate_allowed": 400,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 40,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 8,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 8.0,
+        "legitimate_allowed": 560,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 60,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 4,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.3333333333333333,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0.1381,
+          0.6094
+        ],
+        "median_detection_seconds": 12.0,
+        "legitimate_allowed": 720,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 100,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 4,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.3333333333333333,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0.1381,
+          0.6094
+        ],
+        "median_detection_seconds": 20.0,
+        "legitimate_allowed": 880,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 160,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 0,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": 32.0,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 240,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 400,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 1000,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      }
+    ],
+    "four_signals": [
+      {
+        "setting": 35,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 12,
+        "false_positives": 8,
+        "detection_rate": 0.6,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.3866,
+          0.7812
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 2.5,
+        "legitimate_allowed": 504,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 45,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 12,
+        "false_positives": 8,
+        "detection_rate": 0.6,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.3866,
+          0.7812
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 3.8,
+        "legitimate_allowed": 580,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 55,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 0,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": 6.1,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 65,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 4,
+        "false_positives": 0,
+        "detection_rate": 0.2,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.0807,
+          0.416
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": 14.3,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 75,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 80,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 85,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 90,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 95,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 100,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      }
+    ],
+    "full": [
+      {
+        "setting": 35,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 12,
+        "false_positives": 8,
+        "detection_rate": 0.6,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.3866,
+          0.7812
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 2.5,
+        "legitimate_allowed": 504,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 45,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 12,
+        "false_positives": 8,
+        "detection_rate": 0.6,
+        "false_positive_rate": 0.6666666666666666,
+        "detection_ci95": [
+          0.3866,
+          0.7812
+        ],
+        "false_positive_ci95": [
+          0.3906,
+          0.8619
+        ],
+        "median_detection_seconds": 3.8,
+        "legitimate_allowed": 580,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 55,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 8,
+        "false_positives": 0,
+        "detection_rate": 0.4,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.2188,
+          0.6134
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": 6.1,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 65,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 4,
+        "false_positives": 0,
+        "detection_rate": 0.2,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0.0807,
+          0.416
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": 14.3,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 75,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 80,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 85,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 90,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 95,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      },
+      {
+        "setting": 100,
+        "attack_sessions": 20,
+        "benign_sessions": 12,
+        "detected": 0,
+        "false_positives": 0,
+        "detection_rate": 0.0,
+        "false_positive_rate": 0.0,
+        "detection_ci95": [
+          0,
+          0.1611
+        ],
+        "false_positive_ci95": [
+          0,
+          0.2425
+        ],
+        "median_detection_seconds": null,
+        "legitimate_allowed": 960,
+        "legitimate_attempted": 960
+      }
+    ]
+  },
+  "selection_rule": "Calibration FP <=5%; maximize detection, then minimize FP, then detection time; ties prefer less sensitivity.",
+  "rate_definition": "Fixed 60-second sliding window of admitted requests per key, independently calibrated capacity.",
+  "behavioral_response": "Both variants use 2-second throttles; no 30-second block in this ablation. Production policy is unchanged."
+}

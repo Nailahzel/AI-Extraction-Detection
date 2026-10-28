@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "window_seconds": 60,
+  "monitor_threshold": 35,
+  "throttle_threshold": 55,
+  "block_threshold": 80,
+  "cooldown_seconds": 30,
+  "throttle_seconds": 2,
+  "minimum_evidence": 8,
+  "weights": {
+    "rate": 0.25,
+    "diversity": 0.15,
+    "boundary": 0.35,
+    "sequence": 0.25
+  },
+  "provenance": "Throttle threshold chosen on 84 calibration sessions, seeds 100-111; weights fixed before held-out evaluation."
+}

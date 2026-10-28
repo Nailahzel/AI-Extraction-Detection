@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Apocalypse · Chat</title>
+    <meta name="theme-color" content="#081725" />
+    <link rel="icon" href="/static/chat-favicon.svg?v=apocalypse-1" />
+    <link rel="stylesheet" href="/static/conversation.css?v=apocalypse-1" />
+    <script src="/static/chat.js" defer></script>
+  </head>
+  <body class="chat-page">
+    <aside class="chat-sidebar">
+      <a class="brand" href="/chat" aria-label="Apocalypse chat">
+        <span class="brand-mark" aria-hidden="true">α</span>
+        <span class="wordmark">Apocalypse</span>
+      </a>
+      <button
+        id="new-chat"
+        class="button wide"
+        aria-label="New conversation"
+        title="New conversation"
+      >
+        <span aria-hidden="true">＋</span
+        ><span class="button-label">New conversation</span>
+      </button>
+      <div class="sidebar-session">
+        <div id="demo-clients" hidden>
+          <label for="demo-key">Current session</label
+          ><select id="demo-key">
+            <option value="normal-01">Normal user</option>
+            <option value="probe-01">Test client</option>
+            <option value="normal-02">Another normal user</option>
+            <option value="batch-01">Bulk customer (batch-01)</option>
+            <option value="attacker-01">Probing demo (attacker-01)</option>
+          </select>
+        </div>
+        <details id="connection-settings" class="connection-settings">
+          <summary>
+            Connection settings <span aria-hidden="true">＋</span>
+          </summary>
+          <div class="sidebar-section">
+            <label for="client-key">API key</label>
+            <input
+              id="client-key"
+              type="password"
+              autocomplete="off"
+              placeholder="Your API key"
+            />
+          </div>
+        </details>
+      </div>
+      <div class="sidebar-bottom">
+        <a href="/dashboard" target="_blank" rel="noopener"
+          >Security dashboard <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </aside>
+    <main class="conversation">
+      <header class="chat-top">
+        <div>
+          <span class="eyebrow">A LITTLE ROOM TO THINK</span>
+          <h1>Your conversation</h1>
+        </div>
+        <span id="model-status" class="pill">Checking model…</span>
+      </header>
+      <div id="setup-message" class="notice" hidden></div>
+      <div
+        id="messages"
+        class="messages"
+        role="log"
+        aria-label="Conversation"
+        aria-live="polite"
+      >
+        <div id="welcome" class="welcome">
+          <div class="welcome-mark" aria-hidden="true">α</div>
+          <h2>A little space for<br /><em>your ideas.</em></h2>
+          <p>Ask a question. Take a thought somewhere new.</p>
+          <div class="suggestions">
+            <button
+              data-prompt="Explain how a neural network learns, using a simple example."
+            >
+              <span class="suggestion-icon" aria-hidden="true">↗</span> Explain
+              something simply</button
+            ><button
+              data-prompt="Help me write a friendly opening for my hackathon presentation."
+            >
+              <span class="suggestion-icon" aria-hidden="true">✎</span> Find the
+              right words</button
+            ><button
+              data-prompt="Give me three ideas for a cybersecurity hackathon demo."
+            >
+              <span class="suggestion-icon" aria-hidden="true">✧</span> Explore
+              an idea
+            </button>
+          </div>
+        </div>
+      </div>
+      <section class="compose-area">
+        <div class="compose-tabs" role="group" aria-label="Input mode">
+          <button id="single-tab" aria-pressed="true">Conversation</button
+          ><button id="batch-tab" aria-pressed="false">Batch questions</button>
+        </div>
+        <form id="chat-form">
+          <label class="sr-only" for="message">Your message</label>
+          <div class="composer">
+            <textarea
+              id="message"
+              rows="1"
+              maxlength="2000"
+              placeholder="What’s on your mind?"
+              required
+            ></textarea
+            ><button
+              id="send"
+              class="send"
+              type="submit"
+              aria-label="Send message"
+            >
+              <span aria-hidden="true">↑</span>
+            </button>
+          </div>
+          <p class="compose-note">
+            Enter to send <span aria-hidden="true">·</span> Shift + Enter for a
+            new line
+          </p>
+        </form>
+        <form id="batch-form" hidden>
+          <div class="batch-heading">
+            <label for="batch-questions">One question per line · up to 30</label
+            ><button id="example-batch" type="button" class="text-button">
+              Fill a probing example
+            </button>
+            <button id="varied-batch" type="button" class="text-button">
+              Fill varied questions
+            </button>
+          </div>
+          <textarea
+            id="batch-questions"
+            rows="5"
+            placeholder="Type or paste your questions here…"
+            required
+          ></textarea>
+          <div class="batch-actions">
+            <span id="batch-count">0 / 30 questions</span
+            ><button id="send-batch" class="send" type="submit">
+              Send batch ↑
+            </button>
+          </div>
+          <details id="batch-options" class="batch-options">
+            <summary>Batch options <span aria-hidden="true">＋</span></summary>
+            <div class="batch-options-content">
+              <label class="bulk-opt-in"
+                ><input id="use-bulk-pass" type="checkbox" checked /> Use
+                approved allowance</label
+              >
+              <p id="bulk-access-status" role="status">Checking allowance…</p>
+            </div>
+          </details>
+        </form>
+        <p id="chat-feedback" class="feedback" role="status"></p>
+      </section>
+    </main>
+  </body>
+</html>

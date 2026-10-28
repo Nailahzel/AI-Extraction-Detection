@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "seed": 7319,
+  "attempt_budget": 120,
+  "time_budget_seconds": 8,
+  "candidate_sha256": "f21a379c2e0743c567a75da82a4326997faa1b5af42b549f9e55aa49f53c8233",
+  "test_sha256": "973046f0bb6e7e52ab16dd8c4f4e40783f1f29bea4b975a507df549430a3aa1b",
+  "test_count": 90,
+  "copy_algorithm": "character 3\u20135 gram TF-IDF + logistic regression, C=2",
+  "selection": "fixed shuffled pool; label-only collection; no confidence-based acquisition",
+  "test_origin": "new locally authored synthetic templates, not an independent teammate dataset",
+  "variants": [
+    "unprotected",
+    "protected",
+    "protected_retry_after"
+  ]
+}

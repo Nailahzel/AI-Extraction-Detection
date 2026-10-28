@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "javascript_errors": [],
+  "checks": [
+    "live telemetry",
+    "guided simulation",
+    "real HTTP 429 enforcement",
+    "investigation drawer",
+    "preserved incident evidence and JSON download",
+    "saved copying and baseline experiments",
+    "traffic log",
+    "policy view",
+    "benchmark download",
+    "manual prediction",
+    "manual input visible on desktop and mobile",
+    "sarcastic complaint prediction",
+    "reset",
+    "cross-key campaign",
+    "390px mobile layout",
+    "mobile navigation"
+  ]
+}

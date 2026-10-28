@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "page_count": 5,
+  "clipped_text_blocks": 0,
+  "pages": [
+    {
+      "page": 1,
+      "text_characters": 791,
+      "images": 0
+    },
+    {
+      "page": 2,
+      "text_characters": 1581,
+      "images": 0
+    },
+    {
+      "page": 3,
+      "text_characters": 2133,
+      "images": 0
+    },
+    {
+      "page": 4,
+      "text_characters": 1677,
+      "images": 0
+    },
+    {
+      "page": 5,
+      "text_characters": 1769,
+      "images": 1
+    }
+  ]
+}

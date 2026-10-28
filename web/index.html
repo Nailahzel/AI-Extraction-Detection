@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Monitor API queries, inspect extraction alerts, and test per-key response rules."
+    />
+    <title>Apocalypse — API activity</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/static/chat-favicon.svg?v=apocalypse-1"
+    />
+    <link rel="stylesheet" href="/static/styles.css?v=apocalypse-1" />
+    <script src="/static/app.js" defer></script>
+    <script src="/static/batch.js" defer></script>
+    <script src="/static/experiments.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="Apocalypse classifier lab"
+        ><img
+          class="brand-mark"
+          src="/static/chat-favicon.svg?v=apocalypse-1"
+          alt=""
+          width="44"
+          height="44"
+        /><span
+          >Apocalypse<span class="brand-caption">CLASSIFIER LAB</span></span
+        ></a
+      >
+      <div class="workspace">
+        <img
+          class="workspace-icon"
+          src="/static/chat-favicon.svg?v=apocalypse-1"
+          alt=""
+          width="28"
+          height="29"
+        />
+        <div>Demo workspace<small>Local environment</small></div>
+        <span class="live-dot"></span>
+      </div>
+      <span class="nav-label">WORKSPACE</span>
+      <nav aria-label="Main navigation">
+        <a href="#overview" data-page="overview" class="nav-item active"
+          ><svg><use href="/static/icons.svg#grid" /></svg>Overview</a
+        >
+        <a href="#traffic" data-page="traffic" class="nav-item"
+          ><svg><use href="/static/icons.svg#activity" /></svg>Live traffic<span
+            class="nav-live"
+          ></span
+        ></a>
+        <a href="#campaigns" data-page="campaigns" class="nav-item"
+          ><svg><use href="/static/icons.svg#network" /></svg>Campaigns<span
+            class="nav-count"
+            id="campaign-count"
+            >0</span
+          ></a
+        >
+        <span class="nav-label">TESTING &amp; SETTINGS</span>
+        <a href="#lab" data-page="lab" class="nav-item"
+          ><svg><use href="/static/icons.svg#flask" /></svg>Attack lab<span
+            class="mini-tag"
+            >DEMO</span
+          ></a
+        >
+        <a href="#validation" data-page="validation" class="nav-item"
+          ><svg><use href="/static/icons.svg#chart" /></svg>Validation</a
+        >
+        <a href="#policy" data-page="policy" class="nav-item"
+          ><svg><use href="/static/icons.svg#sliders" /></svg>Defense policy</a
+        >
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-callout">
+          <span class="tiny-eyebrow">DEMO NOTES</span>
+          <h3>First time here?</h3>
+          <p>
+            Start with normal traffic,<br />then try an extraction scenario.
+          </p>
+          <button class="guide-button" id="guide-button">
+            Open demo guide <svg><use href="/static/icons.svg#arrow" /></svg>
+          </button>
+        </div>
+        <a class="sidebar-docs" href="/docs" target="_blank" rel="noopener"
+          ><svg><use href="/static/icons.svg#code" /></svg>API documentation<svg>
+            <use href="/static/icons.svg#external" /></svg
+        ></a>
+        <div class="user">
+          <img
+            class="avatar"
+            src="/static/chat-favicon.svg?v=apocalypse-1"
+            alt=""
+            width="32"
+            height="32"
+          />
+          <div>Security operator<small>Local demo administrator</small></div>
+          <span class="user-dot"></span>
+        </div>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          <button
+            id="menu-button"
+            class="icon-button mobile-only"
+            aria-label="Toggle navigation"
+          >
+            <svg><use href="/static/icons.svg#menu" /></svg></button
+          ><span>Workspace</span
+          ><svg><use href="/static/icons.svg#chevron" /></svg
+          ><strong id="breadcrumb-current">Overview</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="environment-label">LOCAL / DEMO</span
+          ><span class="connection" id="connection"
+            ><span class="live-dot"></span>Connecting</span
+          ><img
+            class="top-avatar"
+            src="/static/chat-favicon.svg?v=apocalypse-1"
+            alt="Apocalypse"
+            width="30"
+            height="30"
+          />
+        </div>
+      </header>
+      <main id="main">
+        <div class="page-heading">
+          <div>
+            <div class="eyebrow" id="page-eyebrow">REQUEST MONITOR</div>
+            <h1 id="page-title">API activity</h1>
+            <p id="page-subtitle">
+              Requests, risk scores, and responses for each API key.
+            </p>
+          </div>
+          <div class="heading-actions">
+            <button class="button secondary" id="export-button">
+              <svg><use href="/static/icons.svg#download" /></svg>Export
+              evidence</button
+            ><button class="button primary" id="demo-button">
+              <svg><use href="/static/icons.svg#play" /></svg
+              ><span>Run live demo</span>
+            </button>
+          </div>
+        </div>
+        <div id="connection-error" class="notice danger" hidden></div>
+        <div id="demo-banner" class="demo-banner" hidden>
+          <span class="pulse-ring"></span>
+          <div>
+            <strong id="demo-stage">Simulation running</strong
+            ><span id="demo-description"
+              >The simulator is sending requests to the model.</span
+            >
+          </div>
+          <span id="demo-elapsed"></span
+          ><button class="text-button" id="stop-demo">Stop simulation</button>
+        </div>
+
+        <section id="page-overview" class="page">
+          <div class="metrics-grid">
+            <article class="metric">
+              <div class="metric-top">
+                Requests inspected<span class="metric-icon lavender"
+                  ><svg><use href="/static/icons.svg#activity" /></svg
+                ></span>
+              </div>
+              <div class="metric-value" id="metric-requests">0</div>
+              <div class="metric-foot">
+                <span class="live-dot"></span><span>Since session start</span
+                ><svg class="sparkline" viewBox="0 0 86 20">
+                  <path d="M1 18h10l5-6 6 3 9-9 8 8 9-9 8 5 10-7 8 3 10-5" />
+                </svg>
+              </div>
+            </article>
+            <article class="metric">
+              <div class="metric-top">
+                Requests prevented<span class="metric-icon rose"
+                  ><svg><use href="/static/icons.svg#shield" /></svg
+                ></span>
+              </div>
+              <div class="metric-value" id="metric-denied">0</div>
+              <div class="metric-foot">
+                <span class="muted" id="denied-detail"
+                  >No answers withheld yet</span
+                >
+              </div>
+            </article>
+            <article class="metric">
+              <div class="metric-top">
+                Active API keys<span class="metric-icon blue"
+                  ><svg><use href="/static/icons.svg#key" /></svg
+                ></span>
+              </div>
+              <div class="metric-value" id="metric-keys">
+                0<span class="metric-unit"> / 8</span>
+              </div>
+              <div class="metric-foot">
+                <span class="muted" id="keys-detail"
+                  >Awaiting first request</span
+                >
+              </div>
+            </article>
+            <article class="metric">
+              <div class="metric-top">
+                Server processing<span class="metric-icon mint"
+                  ><svg><use href="/static/icons.svg#bolt" /></svg
+                ></span>
+              </div>
+              <div class="metric-value" id="metric-latency">
+                —<span class="metric-unit">ms</span>
+              </div>
+              <div class="metric-foot">
+                <span class="soft-tag">P95</span
+                ><span>Before audit / response</span>
+              </div>
+            </article>
+          </div>
+          <div class="overview-main">
+            <article class="panel traffic-chart-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Request volume</h2>
+                  <p>Allowed and withheld answers over the last minute.</p>
+                </div>
+                <span class="time-chip"
+                  ><svg><use href="/static/icons.svg#clock" /></svg>Last 60
+                  seconds</span
+                >
+              </div>
+              <div class="chart-legend">
+                <span><i class="legend-dot green"></i>Allowed</span
+                ><span><i class="legend-dot purple"></i>Prevented</span
+                ><span class="chart-unit">requests / second</span>
+              </div>
+              <div
+                class="chart-wrap"
+                id="traffic-chart"
+                role="img"
+                aria-label="Live traffic chart for the last 60 seconds"
+              ></div>
+              <div class="chart-footer">
+                <span
+                  ><span class="live-dot"></span>Refreshes about once a
+                  second</span
+                ><span id="chart-total">0 requests in this window</span>
+              </div>
+            </article>
+            <article class="defense-card">
+              <div class="defense-top">
+                <span class="tiny-eyebrow">RESPONSE RULES</span
+                ><span class="dark-chip" id="defense-mode">ENFORCING</span>
+              </div>
+              <div class="response-summary">
+                <span>Monitor<strong id="monitor-threshold">35+</strong></span
+                ><span
+                  >Throttle<strong id="throttle-threshold">55+</strong></span
+                ><span>Block<strong id="block-threshold">80+</strong></span>
+              </div>
+              <h2 id="defense-title">Waiting for requests</h2>
+              <p id="defense-description">
+                Send a request or run a scenario.<br />Risk is tracked
+                separately for each key.
+              </p>
+              <div class="defense-stats">
+                <div>
+                  <span id="defense-threats">0</span
+                  ><small>High-risk keys</small>
+                </div>
+                <div>
+                  <span id="defense-signals">4 + 1</span
+                  ><small>Signals + correlation</small>
+                </div>
+                <div>
+                  <span>60<span class="small-unit">s</span></span
+                  ><small>Rolling window</small>
+                </div>
+              </div>
+              <a href="#policy" class="defense-link"
+                >View defense policy<svg>
+                  <use href="/static/icons.svg#arrow" /></svg
+              ></a>
+            </article>
+          </div>
+          <div class="overview-bottom">
+            <article class="panel client-panel">
+              <div class="panel-heading">
+                <div class="title-inline">
+                  <h2>API key activity</h2>
+                  <span class="count-chip" id="active-client-count"
+                    >0 active</span
+                  >
+                </div>
+                <label class="search-field"
+                  ><svg><use href="/static/icons.svg#search" /></svg
+                  ><input
+                    type="search"
+                    id="client-search"
+                    placeholder="Find a key…"
+                    aria-label="Search API keys"
+                /></label>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Client / API key</th>
+                      <th>Queries<small>last 60s</small></th>
+                      <th>Diversity</th>
+                      <th>Low conf.</th>
+                      <th>Risk score</th>
+                      <th>Status</th>
+                      <th><span class="sr-only">Details</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="client-table"></tbody>
+                </table>
+              </div>
+              <div class="panel-bottom">
+                <span>Click a key to inspect its behavioral signals.</span
+                ><button class="text-button" data-navigate="traffic">
+                  All traffic<svg><use href="/static/icons.svg#arrow" /></svg>
+                </button>
+              </div>
+            </article>
+            <article class="panel alerts-panel">
+              <div class="panel-heading">
+                <h2>Detection feed</h2>
+                <span class="count-chip" id="alert-count">0</span>
+              </div>
+              <div id="alert-feed" aria-live="polite"></div>
+              <div class="panel-bottom">
+                <span>Select an alert to inspect the key.</span
+                ><svg><use href="/static/icons.svg#shield" /></svg>
+              </div>
+            </article>
+          </div>
+          <div class="architecture-strip">
+            <div>
+              <span class="model-icon"
+                ><svg><use href="/static/icons.svg#server" /></svg
+              ></span>
+              <div>
+                <strong id="model-name">Sentinel sentiment</strong
+                ><span>Protected model · local CPU inference</span>
+              </div>
+            </div>
+            <div class="flow">
+              <span>API request</span><span class="flow-line"></span
+              ><span class="flow-shield"
+                ><img
+                  class="brand-symbol"
+                  src="/static/chat-favicon.svg?v=apocalypse-1"
+                  alt=""
+                  width="20"
+                  height="20"
+                />Apocalypse</span
+              ><span class="flow-line"></span><span>Model response</span>
+            </div>
+            <span class="model-status"
+              ><span class="live-dot"></span>No external model calls</span
+            >
+          </div>
+        </section>
+
+        <section id="page-traffic" class="page" hidden>
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Request stream</h2>
+                <p>
+                  The 40 most recent requests. Raw prompts are never stored in
+                  the audit log.
+                </p>
+              </div>
+              <span class="soft-tag">LIVE</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>API key</th>
+                    <th>Model output</th>
+                    <th>Confidence</th>
+                    <th>Risk</th>
+                    <th>Decision</th>
+                    <th>Processing</th>
+                  </tr>
+                </thead>
+                <tbody id="event-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section id="page-campaigns" class="page" hidden>
+          <div class="notice">
+            <svg><use href="/static/icons.svg#network" /></svg>
+            <div>
+              <strong>Look for shared probes across keys</strong>
+              <p>
+                Correlation connects at least three API keys that share
+                normalized probes and repeatedly request uncertain predictions.
+              </p>
+            </div>
+          </div>
+          <div id="campaign-list"></div>
+          <div class="panel explainer-panel">
+            <div>
+              <span class="step-number">01</span>
+              <h3>Find shared probes</h3>
+              <p>
+                Compare short-lived hashes of normalized input across active
+                keys.
+              </p>
+            </div>
+            <div>
+              <span class="step-number">02</span>
+              <h3>Require more evidence</h3>
+              <p>
+                Require multiple shared inputs, enough observations, and
+                decision-boundary probing.
+              </p>
+            </div>
+            <div>
+              <span class="step-number">03</span>
+              <h3>Raise a linked alert</h3>
+              <p>
+                Raise each member’s risk. Enforce the policy on its next
+                prediction request.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="page-lab" class="page" hidden>
+          <div class="lab-intro">
+            <div>
+              <span class="tiny-eyebrow">TRY IT YOURSELF</span>
+              <h2>Send a request. Watch the risk.</h2>
+              <p>
+                Use the form below for your own inputs.<br />Keep the same key
+                to test repeated requests.
+              </p>
+            </div>
+            <svg><use href="/static/icons.svg#flask" /></svg>
+          </div>
+          <div class="lab-bottom">
+            <article class="panel playground">
+              <div class="panel-heading">
+                <div>
+                  <h2>Prediction playground</h2>
+                  <p>
+                    Send one input, or paste up to 30 inputs for a batch test.
+                  </p>
+                </div>
+                <svg><use href="/static/icons.svg#code" /></svg>
+              </div>
+              <div class="input-modes" aria-label="Input mode">
+                <button
+                  type="button"
+                  class="button secondary"
+                  data-input-mode="single"
+                  aria-pressed="true"
+                >
+                  Single input
+                </button>
+                <button
+                  type="button"
+                  class="button secondary"
+                  data-input-mode="batch"
+                  aria-pressed="false"
+                >
+                  Multiple inputs
+                </button>
+              </div>
+              <div id="single-playground">
+                <form id="predict-form">
+                  <label for="predict-key">Demo API key</label
+                  ><select id="predict-key">
+                    <option>normal-01</option>
+                    <option>normal-02</option>
+                    <option>batch-01</option>
+                    <option>attacker-01</option>
+                    <option>probe-01</option></select
+                  ><label for="predict-text">Text to classify</label
+                  ><textarea
+                    id="predict-text"
+                    maxlength="2000"
+                    required
+                    rows="3"
+                  >
+The product was surprisingly good.</textarea>
+                  <div class="form-bottom">
+                    <span>POST /predict</span
+                    ><button class="button primary" type="submit">
+                      Analyze text<svg>
+                        <use href="/static/icons.svg#arrow" />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+                <div id="predict-result" hidden aria-live="polite"></div>
+              </div>
+              <form id="batch-form" hidden novalidate>
+                <label for="batch-key">Demo API key for every request</label>
+                <select id="batch-key">
+                  <option>probe-01</option>
+                  <option>normal-01</option>
+                  <option>normal-02</option>
+                  <option>batch-01</option>
+                  <option>attacker-01</option>
+                </select>
+                <label for="batch-text">Your inputs — one per line</label>
+                <textarea
+                  id="batch-text"
+                  rows="7"
+                  maxlength="121000"
+                  placeholder="Paste 10, 15, or 30 questions or sentences here.&#10;Each non-empty line becomes a separate request."
+                  aria-describedby="batch-help batch-count batch-error"
+                ></textarea>
+                <p id="batch-help" class="batch-help">
+                  Up to 30 inputs, 2,000 characters each. Blank lines are
+                  ignored. All requests use the same key and its recent history.
+                </p>
+                <div class="batch-examples">
+                  <span>Try an example:</span>
+                  <button
+                    type="button"
+                    class="button secondary"
+                    data-batch-example="ordinary"
+                  >
+                    15 ordinary inputs
+                  </button>
+                  <button
+                    type="button"
+                    class="button secondary"
+                    data-batch-example="probing"
+                  >
+                    30 probing inputs
+                  </button>
+                </div>
+                <label for="batch-delay">Pause between requests</label>
+                <select id="batch-delay">
+                  <option value="100">Rapid — 0.1 seconds</option>
+                  <option value="1000">Slower — 1 second</option>
+                </select>
+                <p id="batch-error" class="batch-error" role="alert" hidden></p>
+                <div class="form-bottom batch-actions">
+                  <span id="batch-count" aria-live="polite">0 / 30 inputs</span>
+                  <button id="batch-send" type="submit" class="button primary">
+                    Send batch
+                  </button>
+                </div>
+                <p class="batch-help">
+                  One click sends the inputs in order. We show every response,
+                  including withheld answers, without retrying them. More
+                  requests alone do not guarantee a flag.
+                </p>
+              </form>
+            </article>
+            <article class="panel session-panel">
+              <span class="tiny-eyebrow">SESSION CONTROLS</span>
+              <h2>Start a fresh test</h2>
+              <p>
+                Reset the rolling windows, active penalties, and local audit
+                history before comparing scenarios.
+              </p>
+              <p class="muted">
+                The model and validation report stay available. All scenarios
+                use fixed seed 42.
+              </p>
+              <button class="button secondary" id="reset-button">
+                <svg><use href="/static/icons.svg#reset" /></svg>Reset demo
+                session
+              </button>
+            </article>
+          </div>
+          <article id="batch-results" class="panel batch-results" hidden>
+            <div class="panel-heading">
+              <div>
+                <h2>Batch results</h2>
+                <p id="batch-progress" role="status"></p>
+              </div>
+              <div class="batch-actions">
+                <button
+                  id="batch-stop"
+                  type="button"
+                  class="button secondary"
+                  hidden
+                >
+                  Stop batch
+                </button>
+                <button
+                  id="batch-inspect"
+                  type="button"
+                  class="button secondary"
+                >
+                  Inspect this key
+                </button>
+              </div>
+            </div>
+            <div id="batch-summary" aria-live="polite" aria-atomic="true"></div>
+            <div class="table-scroll">
+              <table class="batch-table">
+                <caption>
+                  One row per attempted request. Risk is sampled after the
+                  response.
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Input</th>
+                    <th scope="col">Actual response</th>
+                    <th scope="col">Risk after response</th>
+                  </tr>
+                </thead>
+                <tbody id="batch-rows"></tbody>
+              </table>
+            </div>
+          </article>
+          <div class="section-heading">
+            <h2>Traffic scenarios</h2>
+            <p>
+              Generate a repeatable sequence of requests. Normal clients run
+              alongside each attack scenario.
+            </p>
+          </div>
+          <div class="scenario-grid" id="scenario-grid"></div>
+        </section>
+        <section id="page-validation" class="page" hidden>
+          <div id="experiment-content"></div>
+          <div id="validation-content">
+            <div class="empty-state">
+              <svg><use href="/static/icons.svg#chart" /></svg>
+              <h3>Loading measured results</h3>
+            </div>
+          </div>
+        </section>
+        <section id="page-policy" class="page" hidden>
+          <div class="policy-layout">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Response policy</h2>
+                  <p>The action taken at each risk level.</p>
+                </div>
+                <label class="switch-label"
+                  ><span id="mode-label">Enforcing</span
+                  ><input
+                    id="enforce-toggle"
+                    type="checkbox"
+                    role="switch"
+                    checked /><span class="switch"></span
+                ></label>
+              </div>
+              <div id="policy-bands" class="policy-bands"></div>
+              <div class="notice policy-note">
+                <svg><use href="/static/icons.svg#shield" /></svg>
+                <div>
+                  <strong>Rate alone is not evidence of extraction.</strong>
+                  <p>
+                    A request burst contributes at most 25 risk points.
+                    Independent content signals must also support enforcement.
+                  </p>
+                </div>
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Signal weights</h2>
+                <span class="soft-tag">RISK POINTS</span>
+              </div>
+              <div id="policy-weights" class="policy-weights"></div>
+            </article>
+          </div>
+          <div class="panel explainer-panel">
+            <div>
+              <span class="step-number">A</span>
+              <h3>Adaptive baselines</h3>
+              <p>
+                After 16 trusted intervals, a bounded median estimates each
+                key’s usual query rate. Cold-start keys use 36 queries/minute.
+              </p>
+            </div>
+            <div>
+              <span class="step-number">B</span>
+              <h3>Limited data retention</h3>
+              <p>
+                Rolling observations are capped at 256 per key. The SQLite log
+                retains approximately 5,000 metadata records and no raw prompts.
+              </p>
+            </div>
+            <div>
+              <span class="step-number">C</span>
+              <h3>Known limitations</h3>
+              <p>
+                Lexical similarity is not semantic understanding. Shared benign
+                automation can resemble a campaign; distributed non-overlapping
+                probes can evade it.
+              </p>
+            </div>
+          </div>
+        </section>
+        <footer class="main-footer">
+          <span
+            ><img
+              class="brand-symbol"
+              src="/static/chat-favicon.svg?v=apocalypse-1"
+              alt=""
+              width="20"
+              height="20"
+            />Apocalypse <span class="footer-separator">/</span> Local
+            extraction-monitoring prototype</span
+          ><span
+            >GITEX CYBER DEFENSE
+            <span class="footer-separator">·</span> PROTOTYPE v1.0</span
+          >
+        </footer>
+      </main>
+    </div>
+    <dialog id="detail-dialog" class="detail-dialog">
+      <div class="dialog-top">
+        <span class="tiny-eyebrow">KEY DETAILS</span
+        ><button
+          class="icon-button"
+          data-close="detail-dialog"
+          aria-label="Close investigation"
+        >
+          <svg><use href="/static/icons.svg#close" /></svg>
+        </button>
+      </div>
+      <div id="detail-content"></div>
+    </dialog>
+    <dialog id="incident-dialog" class="detail-dialog">
+      <div class="dialog-top">
+        <span class="tiny-eyebrow">RECORDED INCIDENT EVIDENCE</span
+        ><button
+          class="icon-button"
+          data-close="incident-dialog"
+          aria-label="Close incident"
+        >
+          <svg><use href="/static/icons.svg#close" /></svg>
+        </button>
+      </div>
+      <div id="incident-content"></div>
+    </dialog>
+    <dialog id="guide-dialog">
+      <div class="dialog-top">
+        <span class="tiny-eyebrow">DEMO WALKTHROUGH</span
+        ><button
+          class="icon-button"
+          data-close="guide-dialog"
+          aria-label="Close demo guide"
+        >
+          <svg><use href="/static/icons.svg#close" /></svg>
+        </button>
+      </div>
+      <h2>How to run the demo</h2>
+      <p class="dialog-lead">
+        Follow one key from its first requests to the alert and response.
+      </p>
+      <ol class="guide-steps">
+        <li>
+          <strong>Start with normal traffic.</strong
+          ><span
+            >Run the live demo. Two normal clients start receiving
+            predictions.</span
+          >
+        </li>
+        <li>
+          <strong>Watch the extraction probes.</strong
+          ><span
+            >At five seconds, diverse extraction probes begin. Watch risk rise
+            and requests receive HTTP 429.</span
+          >
+        </li>
+        <li>
+          <strong>Inspect the alert.</strong
+          ><span
+            >Open the suspicious API key. Show the exact signal contributions
+            and normal clients still receiving answers.</span
+          >
+        </li>
+        <li>
+          <strong>Try several keys.</strong
+          ><span
+            >Reset in Attack lab, then run Coordinated campaign. Open Campaigns
+            to show shared evidence across keys.</span
+          >
+        </li>
+        <li>
+          <strong>Check the results.</strong
+          ><span
+            >Open Validation. Explain synthetic regression results, reused test
+            sessions, slow-attack latency, and limitations.</span
+          >
+        </li>
+      </ol>
+      <button class="button primary" id="guide-start">
+        <svg><use href="/static/icons.svg#play" /></svg>Start the live demo
+      </button>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <div class="dialog-top">
+        <h2>Reset this demo?</h2>
+        <button
+          class="icon-button"
+          data-close="confirm-dialog"
+          aria-label="Cancel reset"
+        >
+          <svg><use href="/static/icons.svg#close" /></svg>
+        </button>
+      </div>
+      <p>
+        This stops traffic and clears this workspace’s local audit history,
+        signals, and penalties.
+      </p>
+      <div class="dialog-actions">
+        <button class="button secondary" data-close="confirm-dialog">
+          Keep session</button
+        ><button class="button primary" id="confirm-reset">
+          Reset session
+        </button>
+      </div>
+    </dialog>
+    <dialog id="auth-dialog">
+      <h2>Operator access</h2>
+      <p>Enter the administrator token configured on this server.</p>
+      <form id="auth-form">
+        <label for="admin-token">Administrator token</label
+        ><input
+          id="admin-token"
+          type="password"
+          required
+          autocomplete="current-password"
+        /><button class="button primary" type="submit">Connect</button>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

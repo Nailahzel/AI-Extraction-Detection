@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    "Direct dashboard link displays all five requirements",
+    "API, traffic profiles, and separate detector signals are explained",
+    "Actual measurement counts, rates, and limitations stay separated by model",
+    "Jury can inspect failed traffic profiles and saved browser checks",
+    "Evidence packet and original report download through operator authentication",
+    "Viewing evidence leaves live traffic untouched and navigation remains usable",
+    "Saved feature tour displays real request evidence and downloads without generating traffic",
+    "Bulk-pass status and checkbox remain usable in a narrow chatbot window",
+    "Requirements, metrics, and download controls fit a mobile viewport",
+    "Missing reports show incomplete evidence without fabricated zero or perfect scores",
+    "No browser JavaScript errors"
+  ],
+  "javascript_errors": []
+}

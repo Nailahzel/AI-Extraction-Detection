@@ -1,0 +1,3089 @@
+{
+  "id": "tour-57ebad8a62004b5fb9ec9c44a63b3d88",
+  "status": "complete",
+  "started_at": 1789063471.858294,
+  "target": "http://127.0.0.1:8765",
+  "current": "Demonstration complete. Expand a feature below and select a request to inspect its original question, result and signals.",
+  "scope": "Real local chatbot and dashboard interactions. Saved examples, not a detection-accuracy or cloning-success benchmark.",
+  "history_reset": false,
+  "features": [
+    {
+      "id": "conversation",
+      "title": "Real local conversation",
+      "explanation": "A customer talks to the local model without operator access.",
+      "status": "passed",
+      "started_at": 1789063474.5696979,
+      "result": "The local model greeted Maya; the question and released answer are in the dashboard.",
+      "finished_at": 1789063477.3412755,
+      "observations": [],
+      "request_ids": [
+        "036a4576cc154dbda6699d6356aec938"
+      ],
+      "samples": [
+        {
+          "id": "036a4576cc154dbda6699d6356aec938",
+          "at": 1789063476.3758373,
+          "client_id": "normal-01",
+          "conversation_id": "ae7f7092-5e1a-4e7b-a7de-34c37d92bbf1",
+          "question": "My name is Maya. Please greet me in one short sentence.",
+          "reply": "Hello Maya!",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 343.3,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "title": "Conversation memory",
+      "explanation": "A follow-up uses the previous messages in the same conversation.",
+      "status": "passed",
+      "started_at": 1789063477.672523,
+      "result": "The follow-up answered Maya using the same conversation history.",
+      "finished_at": 1789063478.66764,
+      "observations": [],
+      "request_ids": [
+        "633d90bf3ae14690bdc02ec94e0e0f01"
+      ],
+      "samples": [
+        {
+          "id": "633d90bf3ae14690bdc02ec94e0e0f01",
+          "at": 1789063477.775784,
+          "client_id": "normal-01",
+          "conversation_id": "ae7f7092-5e1a-4e7b-a7de-34c37d92bbf1",
+          "question": "What is my name? Answer with just my name.",
+          "reply": "Maya",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.9,
+          "signals": {
+            "rate": {
+              "value": 2,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.721,
+              "unit": "mean lexical distance",
+              "points": 0.9
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 302.9,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.9,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "Input checks and operator separation",
+      "explanation": "Oversized batches stop in the browser; a chat customer cannot read operator evidence.",
+      "status": "passed",
+      "started_at": 1789063478.9451745,
+      "result": "31 questions were rejected in the browser before any model request; operator data returned HTTP 401 to the chat-only browser.",
+      "finished_at": 1789063479.1325796,
+      "observations": [
+        "These checks intentionally create no inference row. The two successful conversation requests prove the customer can chat without an operator cookie."
+      ],
+      "request_ids": [],
+      "samples": []
+    },
+    {
+      "id": "short_wait",
+      "title": "One-second speed bump",
+      "explanation": "A short suspicious burst is paced by the server before generation.",
+      "status": "passed",
+      "started_at": 1789063479.4169059,
+      "result": "Eight answers released; 3 requests recorded the one-second pacing level.",
+      "finished_at": 1789063488.4345937,
+      "observations": [],
+      "request_ids": [
+        "d128716f6d8f475d853819e6637fccb1",
+        "14dafcfe981749529a14f705a5881c98",
+        "cff8b56704534d4d8c306fb42721d1a5",
+        "21008e1ff99142d5a6d128308934998e",
+        "71c8343127fc497da93c848c7ce869ba",
+        "afdb71bac4fa497788543b9db36f8e0a",
+        "7a6eed1491534f96adc0f1ef60297cf3",
+        "2776085b4a0b4d269ddbd7397699575b"
+      ],
+      "samples": [
+        {
+          "id": "d128716f6d8f475d853819e6637fccb1",
+          "at": 1789063479.891266,
+          "client_id": "probe-01",
+          "conversation_id": "acc33d15-69ad-411d-9192-1559aa91a90f",
+          "question": "Explain how a neural network learns from examples. Keep answer 1 to one sentence.",
+          "reply": "A neural network learns by adjusting weights based on the examples it sees, allowing it to make predictions or decisions based on patterns and relationships within the data.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1917.5,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "7a6eed1491534f96adc0f1ef60297cf3",
+          "at": 1789063481.329469,
+          "client_id": "probe-01",
+          "conversation_id": "acc33d15-69ad-411d-9192-1559aa91a90f",
+          "question": "Why is the sky blue?",
+          "reply": "The sky is blue because it reflects sunlight. When sunlight enters Earth's atmosphere, it is split into its component colors, including blue. The blue light is scattered by tiny particles in the atmosphere, such as water droplets or ice crystals, which causes it to be scattered in all directions. This scattered light is what we see as blue in the sky.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 38.0,
+          "signals": {
+            "rate": {
+              "value": 7,
+              "unit": "requests / 10 s",
+              "points": 11.2
+            },
+            "diversity": {
+              "value": 0.29,
+              "unit": "mean lexical distance",
+              "points": 4.4
+            },
+            "repetition": {
+              "value": 0.833,
+              "unit": "duplicate or near-neighbor share",
+              "points": 22.3
+            }
+          },
+          "reasons": [
+            "7 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 6525.4,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 38.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 1,
+            "wait_ms": 980.8
+          },
+          "truncated": false
+        },
+        {
+          "id": "2776085b4a0b4d269ddbd7397699575b",
+          "at": 1789063481.832691,
+          "client_id": "probe-01",
+          "conversation_id": "acc33d15-69ad-411d-9192-1559aa91a90f",
+          "question": "What makes bread rise?",
+          "reply": "Bread rises due to fermentation, which involves the action of bacteria and yeast converting sugars into carbon dioxide and water, causing the dough to expand.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 49.0,
+          "signals": {
+            "rate": {
+              "value": 8,
+              "unit": "requests / 10 s",
+              "points": 15.0
+            },
+            "diversity": {
+              "value": 0.448,
+              "unit": "mean lexical distance",
+              "points": 9.0
+            },
+            "repetition": {
+              "value": 0.714,
+              "unit": "duplicate or near-neighbor share",
+              "points": 25.0
+            }
+          },
+          "reasons": [
+            "8 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 6013.4,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 49.0,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 1,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "long_wait",
+      "title": "Three-second speed bump",
+      "explanation": "A more repetitive burst receives stronger pacing. Actual waiting is measured.",
+      "status": "passed",
+      "started_at": 1789063488.7324471,
+      "result": "The stronger burst recorded three-second pacing while still receiving eight answers.",
+      "finished_at": 1789063504.6272979,
+      "observations": [],
+      "request_ids": [
+        "388fab275a494f78a6dc965194c85823",
+        "82364c5c312c4508ac7a7c2a597c8e97",
+        "77733c139d8648a68e933882e387ad3b",
+        "6408939d769c4b76879c357b68320f84",
+        "05e559816fb54ef681b55afb3c7fca2b",
+        "a9c931704c9442f0a467acd5986a593f",
+        "488afaadbd41473cbdb7e643ad08cd6b",
+        "ff16886c9220434d9ab6fdc207177117"
+      ],
+      "samples": [
+        {
+          "id": "388fab275a494f78a6dc965194c85823",
+          "at": 1789063489.4064348,
+          "client_id": "swarm-01",
+          "conversation_id": "00103169-7d73-407d-b2b8-92592443bdb2",
+          "question": "Explain how a neural network learns from examples. Keep answer 1 to one sentence.",
+          "reply": "A neural network learns from examples by adjusting its weights based on the patterns it sees in the training data.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1122.0,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "a9c931704c9442f0a467acd5986a593f",
+          "at": 1789063489.4585757,
+          "client_id": "swarm-01",
+          "conversation_id": "00103169-7d73-407d-b2b8-92592443bdb2",
+          "question": "Explain how a neural network learns from examples. Keep answer 6 to one sentence.",
+          "reply": "A neural network learns by processing data, identifying patterns, and adjusting its weights to minimize errors.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 27.3,
+          "signals": {
+            "rate": {
+              "value": 6,
+              "unit": "requests / 10 s",
+              "points": 7.5
+            },
+            "diversity": {
+              "value": 0.006,
+              "unit": "mean lexical distance",
+              "points": 0.1
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 19.7
+            }
+          },
+          "reasons": [
+            "Repeated or closely varied inputs suggest systematic probing"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 7776.8,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 27.3,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 2998.6
+          },
+          "truncated": false
+        },
+        {
+          "id": "ff16886c9220434d9ab6fdc207177117",
+          "at": 1789063490.5515807,
+          "client_id": "swarm-01",
+          "conversation_id": "00103169-7d73-407d-b2b8-92592443bdb2",
+          "question": "Explain how a neural network learns from examples. Keep answer 8 to one sentence.",
+          "reply": "A neural network learns by processing data through multiple layers, where each layer processes the output of the previous layer based on the input data and the weights connecting the layers. This process involves a process called backpropagation, where the error in the output is calculated and the weights of the connections are adjusted to minimize this error.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 50.1,
+          "signals": {
+            "rate": {
+              "value": 8,
+              "unit": "requests / 10 s",
+              "points": 15.0
+            },
+            "diversity": {
+              "value": 0.006,
+              "unit": "mean lexical distance",
+              "points": 0.1
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 35.0
+            }
+          },
+          "reasons": [
+            "8 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 13792.7,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 50.1,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 2996.6
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "approved",
+      "title": "Thirty approved questions",
+      "explanation": "An operator approves a bounded workload; a manual batch uses the same saved pass.",
+      "status": "passed",
+      "started_at": 1789063504.9133728,
+      "result": "All 30 approved questions received real answers; the pass reached 30 / 30 used.",
+      "finished_at": 1789063534.5468285,
+      "observations": [],
+      "request_ids": [
+        "5f4b42a1156f40c483a346319a7a6a9d",
+        "67d03a587efc4aed8d73e9b2bb9f6ba5",
+        "4363b22d6a584f53ad9f539eeb6c08ca",
+        "8a0293cbba764617ba00ff0545a399f2",
+        "eb5925eca96c4029a1a97720c6fc1ab8",
+        "9ce3317fbcc340ff9d51baa0f09602f9",
+        "1da4451be02e40cbb55e926d9ffe3f49",
+        "37d5724a65e14895a36a51321d8363f4",
+        "716740b579d64c90aac5350eaffa557b",
+        "3da070d430f64815a203cb2061e76e3f",
+        "218d6cafbb524f12becb39451fbd0596",
+        "8940cbccb470421cb3b8095bcb87ec62",
+        "2656841cb29b41b4b6058f8deb089f3b",
+        "58dad22125fc4062ba6120312bd0047c",
+        "f72cb6eee28d448cb6fbaf7dc8494e85",
+        "73462e5b7993441f9712d350206af0a4",
+        "5c4c8431b49b482ab281573dc2724b8e",
+        "bd8caa0d899a463f9d9db40b527c56f5",
+        "b13493acf0cf42e99fa21b8b52974292",
+        "ffe5dd2faeb54ff58b00414844c75615",
+        "11186f651f14442787359df034761eef",
+        "095f82d560c544f7a6ad493473d48b8e",
+        "669ccb4b91d4462fa94c566ef42313f6",
+        "e2b788a89b6747309019e464881db598",
+        "93d355db8adf46c39dcc1fa03947103f",
+        "d9f998a6289b4893bdfc68b49a8e91b4",
+        "3a0e9e65557b46ffbb04327af46f14c1",
+        "ed788d521f6745b1b3b5e067338949f3",
+        "c1fb891563234f99a72ffc2dc7367289",
+        "63b90b19b95c44a899f65ab0a4519561"
+      ],
+      "samples": [
+        {
+          "id": "5f4b42a1156f40c483a346319a7a6a9d",
+          "at": 1789063505.7213151,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "Why is the sky blue?",
+          "reply": "The sky appears blue due to the scattering of sunlight by tiny particles in the Earth's atmosphere, such as dust and water droplets. This scattering causes the blue light to be scattered away from us, making the sky appear blue.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1699.2,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-bb96bd57be9642da84848d199c622bc7",
+          "bulk_pass": {
+            "id": "BULK-bb96bd57be9642da84848d199c622bc7",
+            "client_id": "batch-01",
+            "limit": 30,
+            "used": 1,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for batch-01",
+            "issued_at": 1789063505.086661,
+            "expires_at": 1789064105.086661,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 29
+          },
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "63b90b19b95c44a899f65ab0a4519561",
+          "at": 1789063528.7758646,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "What does encryption mean?",
+          "reply": "Encryption is the process of converting data into an unreadable format using a secret key, making it unreadable to anyone who does not have the key. This protects data from unauthorized access and ensures confidentiality.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 18.5,
+          "signals": {
+            "rate": {
+              "value": 11,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.924,
+              "unit": "mean lexical distance",
+              "points": 18.5
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 26.2 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 4855.3,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-bb96bd57be9642da84848d199c622bc7",
+          "bulk_pass": {
+            "id": "BULK-bb96bd57be9642da84848d199c622bc7",
+            "client_id": "batch-01",
+            "limit": 30,
+            "used": 30,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for batch-01",
+            "issued_at": 1789063505.086661,
+            "expires_at": 1789064105.086661,
+            "revoked_at": null,
+            "status": "exhausted",
+            "remaining": 0
+          },
+          "raw_risk": 44.7,
+          "rate_credit": 26.2,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "concurrency",
+      "title": "Live queue and concurrency cap",
+      "explanation": "The approved workload queues while at most two requests generate answers at once.",
+      "status": "passed",
+      "started_at": 1789063534.8207226,
+      "result": "Observed a live backlog and a maximum of 2 simultaneous generations for the two-slot pass.",
+      "finished_at": 1789063534.833491,
+      "observations": [
+        "This is the observed live run; automated concurrency tests separately check enforcement under racing requests."
+      ],
+      "request_ids": [],
+      "samples": []
+    },
+    {
+      "id": "exhaustion",
+      "title": "Allowance exhausted",
+      "explanation": "The thirty-first request using the same pass is withheld.",
+      "status": "passed",
+      "started_at": 1789063535.0840542,
+      "result": "The next manual batch request was withheld because all 30 slots were used.",
+      "finished_at": 1789063535.24528,
+      "observations": [],
+      "request_ids": [
+        "eeb80a4ccbb7443fb54d564b757a3bb5"
+      ],
+      "samples": [
+        {
+          "id": "eeb80a4ccbb7443fb54d564b757a3bb5",
+          "at": 1789063535.1965368,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "What is an API?",
+          "reply": null,
+          "status": "withheld",
+          "action": "bulk_limit",
+          "risk": 12.3,
+          "signals": {
+            "rate": {
+              "value": 5,
+              "unit": "requests / 10 s",
+              "points": 0.8
+            },
+            "diversity": {
+              "value": 0.921,
+              "unit": "mean lexical distance",
+              "points": 11.5
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 3.0 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 2.0,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-bb96bd57be9642da84848d199c622bc7",
+          "bulk_pass": null,
+          "raw_risk": 15.3,
+          "rate_credit": 3.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "error": "Bulk pass allowance is exhausted.",
+          "enforcement": {
+            "risk": 12.3,
+            "signals": {
+              "rate": {
+                "value": 5,
+                "unit": "requests / 10 s",
+                "points": 0.8
+              },
+              "diversity": {
+                "value": 0.921,
+                "unit": "mean lexical distance",
+                "points": 11.5
+              },
+              "repetition": {
+                "value": 0.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 0.0
+              }
+            },
+            "reasons": [
+              "Inputs cover unusually different wording in a short burst",
+              "Operator-approved arrivals remove 3.0 rate points; other signals remain active"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "unapproved",
+      "title": "Ordinary limits without a pass",
+      "explanation": "Turning off pass use returns a rapid varied batch to normal detector rules.",
+      "status": "passed",
+      "started_at": 1789063535.5309267,
+      "result": "Without pass use, the varied burst triggered ordinary throttling: 22 of 30 answers withheld.",
+      "finished_at": 1789063546.340479,
+      "observations": [],
+      "request_ids": [
+        "376e000c700749b9bd5a8f1aae288312",
+        "47fc4eb047fd43e7a91b4365153ff73c",
+        "b3f945aae6604728b98dcc31c46d391a",
+        "405c74add6a34d41be96fe5eb69f92d6",
+        "b8449b14d73e425990cf04827d9f2b27",
+        "17c6208dccc94c4a84814e13eb81039b",
+        "2b2105c97c8a46ffb53fe13bdf0a3129",
+        "28d502d3bd044902b8ef368df1a3561d",
+        "cd26e56ecdc04dc2994c08dbbb067dd2",
+        "272865f648cd43918dbcd0c3fe411779",
+        "a5287de1f6be4753982d1fac5ead43a4",
+        "8eba7822d4ed4dbabcc6e62236de6c89",
+        "e89ab30ae5be49e59d2b568f25e1d287",
+        "8c9415935a624c2fa8e3a93b540856df",
+        "576d665005454db6ae1eb6823c64f15b",
+        "4e22dd8b86d146b3bd4926a5621bf0e9",
+        "abbd18dbd3674a99af5da0de36b1ea69",
+        "5d53361c939a4a2fa75f59c5669b4701",
+        "badd7549e5d94831bcb07fa3264d848e",
+        "39e94d76ad0041e4a126d3c31cc636ba",
+        "68dbf0e5b61f4cdc85b8e9685ec8fd85",
+        "c5012f1b6278476db140d2e72a7bb84c",
+        "77862df8d1f2475f8c399ff9da3b88e6",
+        "740764634ecd4819b048a7f706efef43",
+        "4436129e81784a67abb957c45a6c3624",
+        "e0ec5fbe04c14649bda81bd6e67a4dc9",
+        "4406aadb367f43a8a0c873a65fa7358d",
+        "e980968ce448452fb116b780d87d52f3",
+        "6d9da7ce78724956a6816c89b41bcf4a",
+        "a4b9351057a34b85b400f62537c4dc68"
+      ],
+      "samples": [
+        {
+          "id": "376e000c700749b9bd5a8f1aae288312",
+          "at": 1789063535.7162151,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "Why is the sky blue?",
+          "reply": "The sky is blue because of the scattering of sunlight by tiny particles in the Earth's atmosphere. This process causes different wavelengths of light to scatter at different angles, creating the colors we see in the sky.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 17.1,
+          "signals": {
+            "rate": {
+              "value": 6,
+              "unit": "requests / 10 s",
+              "points": 2.5
+            },
+            "diversity": {
+              "value": 0.919,
+              "unit": "mean lexical distance",
+              "points": 13.8
+            },
+            "repetition": {
+              "value": 0.031,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.8
+            }
+          },
+          "reasons": [
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 5.0 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1519.5,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 22.1,
+          "rate_credit": 5.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "28d502d3bd044902b8ef368df1a3561d",
+          "at": 1789063537.9937851,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "How are mountains formed?",
+          "reply": null,
+          "status": "withheld",
+          "action": "throttle",
+          "risk": 39.7,
+          "signals": {
+            "rate": {
+              "value": 10,
+              "unit": "requests / 10 s",
+              "points": 20.2
+            },
+            "diversity": {
+              "value": 0.92,
+              "unit": "mean lexical distance",
+              "points": 18.4
+            },
+            "repetition": {
+              "value": 0.031,
+              "unit": "duplicate or near-neighbor share",
+              "points": 1.1
+            }
+          },
+          "reasons": [
+            "10 requests arrived in 10 seconds",
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 2.2 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 7870.6,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 42.0,
+          "rate_credit": 2.2,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 1,
+            "wait_ms": 0
+          },
+          "enforcement": {
+            "risk": 64.4,
+            "signals": {
+              "rate": {
+                "value": 30,
+                "unit": "requests / 10 s",
+                "points": 45.0
+              },
+              "diversity": {
+                "value": 0.917,
+                "unit": "mean lexical distance",
+                "points": 18.3
+              },
+              "repetition": {
+                "value": 0.031,
+                "unit": "duplicate or near-neighbor share",
+                "points": 1.1
+              }
+            },
+            "reasons": [
+              "30 requests arrived in 10 seconds",
+              "Inputs cover unusually different wording in a short burst"
+            ]
+          }
+        },
+        {
+          "id": "17c6208dccc94c4a84814e13eb81039b",
+          "at": 1789063535.835396,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "What does an API do?",
+          "reply": "An API (Application Programming Interface) is a set of rules, protocols, and tools for building applications. It allows different software applications to communicate with each other, enabling data exchange, integration, and functionality sharing. APIs facilitate development, testing, and deployment of applications by providing a common interface for developers to interact with each other.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 36.1,
+          "signals": {
+            "rate": {
+              "value": 11,
+              "unit": "requests / 10 s",
+              "points": 16.7
+            },
+            "diversity": {
+              "value": 0.916,
+              "unit": "mean lexical distance",
+              "points": 18.3
+            },
+            "repetition": {
+              "value": 0.031,
+              "unit": "duplicate or near-neighbor share",
+              "points": 1.1
+            }
+          },
+          "reasons": [
+            "11 requests arrived in 10 seconds",
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 9.5 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 5768.0,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 45.7,
+          "rate_credit": 9.5,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 1,
+            "wait_ms": 629.4
+          },
+          "truncated": false
+        },
+        {
+          "id": "a4b9351057a34b85b400f62537c4dc68",
+          "at": 1789063545.301669,
+          "client_id": "batch-01",
+          "conversation_id": "42e9332e-6c31-4112-ac14-01443f6d81a1",
+          "question": "What does encryption mean?",
+          "reply": null,
+          "status": "withheld",
+          "action": "throttle",
+          "risk": 64.4,
+          "signals": {
+            "rate": {
+              "value": 30,
+              "unit": "requests / 10 s",
+              "points": 45.0
+            },
+            "diversity": {
+              "value": 0.917,
+              "unit": "mean lexical distance",
+              "points": 18.3
+            },
+            "repetition": {
+              "value": 0.031,
+              "unit": "duplicate or near-neighbor share",
+              "points": 1.1
+            }
+          },
+          "reasons": [
+            "30 requests arrived in 10 seconds",
+            "Inputs cover unusually different wording in a short burst"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 3.4,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 64.4,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 0
+          },
+          "enforcement": {
+            "risk": 64.4,
+            "signals": {
+              "rate": {
+                "value": 30,
+                "unit": "requests / 10 s",
+                "points": 45.0
+              },
+              "diversity": {
+                "value": 0.917,
+                "unit": "mean lexical distance",
+                "points": 18.3
+              },
+              "repetition": {
+                "value": 0.031,
+                "unit": "duplicate or near-neighbor share",
+                "points": 1.1
+              }
+            },
+            "reasons": [
+              "30 requests arrived in 10 seconds",
+              "Inputs cover unusually different wording in a short burst"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "revocation",
+      "title": "Revoke queued answers",
+      "explanation": "An operator revokes a pass while its manual batch is still processing.",
+      "status": "passed",
+      "started_at": 1789063547.1809175,
+      "result": "Revoking the pass withheld 15 of 15 submitted answers; already released answers remain in the audit.",
+      "finished_at": 1789063549.9682374,
+      "observations": [],
+      "request_ids": [
+        "0012a5fbeacf4c8780aa4973f9232e74",
+        "50cba9ffde3e44faac7123efbce0ef80",
+        "054a58e6bdf24420966b53d54437eaab",
+        "3549398439c04c199459e407d5eea210",
+        "799d8f34d7134869be5fff4e25304a6f",
+        "57c4c32da58d4c7faa9c0437157b8618",
+        "5a84bc26f9fd46e2bf949adb266bc45c",
+        "7a342b20cd88435f8531845607ff2dac",
+        "0527bdfb0d57493fac747b5edbb31307",
+        "d90d36d0c0234b9d9a10d8211747a9af",
+        "a8edfd5f3cde4a4c87c2251e10b10668",
+        "ce9405b4457946d2ad3a99effb90b3bb",
+        "96bb3a4ab4634d5e9d98bb97fa65d77c",
+        "b0ba6dd73a104e72894822728c68619b",
+        "202d0e9e74b04615b7bcdf61c4865603"
+      ],
+      "samples": [
+        {
+          "id": "0012a5fbeacf4c8780aa4973f9232e74",
+          "at": 1789063548.1192372,
+          "client_id": "normal-02",
+          "conversation_id": "cb0641a0-8395-4f6c-a06b-a36757c9be33",
+          "question": "Why is the sky blue?",
+          "reply": null,
+          "status": "withheld",
+          "action": "bulk_limit",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1277.3,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-6bbd0f9fa72f413e80a07087bde9572f",
+          "bulk_pass": {
+            "id": "BULK-6bbd0f9fa72f413e80a07087bde9572f",
+            "client_id": "normal-02",
+            "limit": 15,
+            "used": 1,
+            "concurrency": 1,
+            "purpose": "Guided demo: 15 varied questions for normal-02",
+            "issued_at": 1789063547.4215143,
+            "expires_at": 1789064147.4215143,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 14
+          },
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "error": "Bulk pass was revoked by the operator.",
+          "enforcement": {
+            "risk": 10.6,
+            "signals": {
+              "rate": {
+                "value": 6,
+                "unit": "requests / 10 s",
+                "points": 0.0
+              },
+              "diversity": {
+                "value": 0.942,
+                "unit": "mean lexical distance",
+                "points": 10.6
+              },
+              "repetition": {
+                "value": 0.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 0.0
+              }
+            },
+            "reasons": [
+              "Inputs cover unusually different wording in a short burst",
+              "Operator-approved arrivals remove 7.5 rate points; other signals remain active"
+            ]
+          }
+        },
+        {
+          "id": "202d0e9e74b04615b7bcdf61c4865603",
+          "at": 1789063549.5004485,
+          "client_id": "normal-02",
+          "conversation_id": "cb0641a0-8395-4f6c-a06b-a36757c9be33",
+          "question": "What is a prime number?",
+          "reply": null,
+          "status": "withheld",
+          "action": "bulk_limit",
+          "risk": 43.5,
+          "signals": {
+            "rate": {
+              "value": 15,
+              "unit": "requests / 10 s",
+              "points": 24.8
+            },
+            "diversity": {
+              "value": 0.938,
+              "unit": "mean lexical distance",
+              "points": 18.8
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [
+            "15 requests arrived in 10 seconds",
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 16.5 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 2.1,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-6bbd0f9fa72f413e80a07087bde9572f",
+          "bulk_pass": null,
+          "raw_risk": 60.0,
+          "rate_credit": 16.5,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 1,
+            "wait_ms": 0
+          },
+          "error": "Bulk pass was revoked by the operator.",
+          "enforcement": {
+            "risk": 43.5,
+            "signals": {
+              "rate": {
+                "value": 15,
+                "unit": "requests / 10 s",
+                "points": 24.8
+              },
+              "diversity": {
+                "value": 0.938,
+                "unit": "mean lexical distance",
+                "points": 18.8
+              },
+              "repetition": {
+                "value": 0.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 0.0
+              }
+            },
+            "reasons": [
+              "15 requests arrived in 10 seconds",
+              "Inputs cover unusually different wording in a short burst",
+              "Operator-approved arrivals remove 16.5 rate points; other signals remain active"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "expiry",
+      "title": "Automatic pass expiry",
+      "explanation": "A one-minute pass expires naturally during a queued batch; it is not backdated.",
+      "status": "passed",
+      "started_at": 1789063550.2906466,
+      "result": "The pass expired naturally; 29 queued answers were withheld after expiry.",
+      "finished_at": 1789063607.548035,
+      "observations": [
+        "The pass had a one-minute lifetime and a one-generation concurrency cap."
+      ],
+      "request_ids": [
+        "4820ae31a35644438ee2d33f7da27eec",
+        "2a6b9368ead840a3a9540fd32c16e9fb",
+        "66cda9115d2c48109349476072a08df4",
+        "f9a929a6b48d4589b45c39c2ff8f9d51",
+        "4d2720c8188244159f3854fe5e536406",
+        "cf38b3822af441858a3b66e38f84e7a4",
+        "99c983d7879548fb8e57b620be76958c",
+        "99bb410d8d574e8da55c0fd6ad02a7ed",
+        "63d11495d57b41a1a8be4bb0d75587e6",
+        "ab1eca124af746c18bc9b99f3e973ce0",
+        "fed54e440e374be7a15734cd31754cf5",
+        "b1bf9daca3bb44d4aae4d2e0e3837b4c",
+        "2337c6c2b7d44152aa0a7fa10344a501",
+        "cd6b22f39aa44ac89bd0535d51e2975f",
+        "c826b75efe5d4cebaf14713b8453e936",
+        "ae301403036846c9a7b511e6de0629a3",
+        "0a0a73ff0a9b4538afb5588b86266eea",
+        "7cb1fe897b9e490f987ce96be866b3b1",
+        "fb813ce01c234ebbad93420ae9cff8e0",
+        "ab396a568c8a47b4a4e49838b53f43bf",
+        "b9bf14677eae4a14a5b20c5f355cebeb",
+        "7fb40eb5d7b04b9ba2a3133cc9592ac0",
+        "1c7dec7d944343f4a8d0f04a1eeef1ca",
+        "694aa2bdeb484e21ab6f593351a8f35f",
+        "601cafaa3931445fbe8bf81113ab094c",
+        "96b47b1af1f54397905e5f0e5008fcfd",
+        "0ac89cd7d3454a038537001c2d0cb0cf",
+        "27d9c600ebb040feae60b40864867163",
+        "344aedaaaee3430c842631a100bebf34",
+        "290c2529cb5e4322a49025089259560f"
+      ],
+      "samples": [
+        {
+          "id": "4820ae31a35644438ee2d33f7da27eec",
+          "at": 1789063604.115505,
+          "client_id": "swarm-02",
+          "conversation_id": "9a52bf8a-9d98-4916-94fc-2a3e214f7d99",
+          "question": "Why is the sky blue?",
+          "reply": "The sky is blue because it reflects sunlight, which has different colors. The blue color comes from the red and yellow wavelengths of sunlight. When sunlight passes through the Earth's atmosphere, it is split into its component colors. The blue light is scattered the most, while the other colors are scattered less. This scattering causes the blue light to appear blue in the sky.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1774.1,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-1cb7603605cc493d939ff322780e93fa",
+          "bulk_pass": {
+            "id": "BULK-1cb7603605cc493d939ff322780e93fa",
+            "client_id": "swarm-02",
+            "limit": 30,
+            "used": 1,
+            "concurrency": 1,
+            "purpose": "Guided demo: 30 varied questions for swarm-02",
+            "issued_at": 1789063546.6951575,
+            "expires_at": 1789063606.6951575,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 29
+          },
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "2a6b9368ead840a3a9540fd32c16e9fb",
+          "at": 1789063604.146105,
+          "client_id": "swarm-02",
+          "conversation_id": "9a52bf8a-9d98-4916-94fc-2a3e214f7d99",
+          "question": "How do plants turn sunlight into food?",
+          "reply": null,
+          "status": "withheld",
+          "action": "bulk_limit",
+          "risk": 1.2,
+          "signals": {
+            "rate": {
+              "value": 2,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 1.0,
+              "unit": "mean lexical distance",
+              "points": 1.2
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 2633.7,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-1cb7603605cc493d939ff322780e93fa",
+          "bulk_pass": {
+            "id": "BULK-1cb7603605cc493d939ff322780e93fa",
+            "client_id": "swarm-02",
+            "limit": 30,
+            "used": 2,
+            "concurrency": 1,
+            "purpose": "Guided demo: 30 varied questions for swarm-02",
+            "issued_at": 1789063546.6951575,
+            "expires_at": 1789063606.6951575,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 28
+          },
+          "raw_risk": 1.2,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "error": "Bulk pass has expired.",
+          "enforcement": {
+            "risk": 14.5,
+            "signals": {
+              "rate": {
+                "value": 7,
+                "unit": "requests / 10 s",
+                "points": 0.0
+              },
+              "diversity": {
+                "value": 0.947,
+                "unit": "mean lexical distance",
+                "points": 14.5
+              },
+              "repetition": {
+                "value": 0.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 0.0
+              }
+            },
+            "reasons": [
+              "Inputs cover unusually different wording in a short burst",
+              "Operator-approved arrivals remove 11.2 rate points; other signals remain active"
+            ]
+          }
+        },
+        {
+          "id": "290c2529cb5e4322a49025089259560f",
+          "at": 1789063607.008126,
+          "client_id": "swarm-02",
+          "conversation_id": "9a52bf8a-9d98-4916-94fc-2a3e214f7d99",
+          "question": "What is an algorithm?",
+          "reply": null,
+          "status": "withheld",
+          "action": "bulk_limit",
+          "risk": 53.0,
+          "signals": {
+            "rate": {
+              "value": 30,
+              "unit": "requests / 10 s",
+              "points": 34.5
+            },
+            "diversity": {
+              "value": 0.924,
+              "unit": "mean lexical distance",
+              "points": 18.5
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [
+            "30 requests arrived in 10 seconds",
+            "Inputs cover unusually different wording in a short burst",
+            "Operator-approved arrivals remove 10.5 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 3.3,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-1cb7603605cc493d939ff322780e93fa",
+          "bulk_pass": null,
+          "raw_risk": 63.5,
+          "rate_credit": 10.5,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 0
+          },
+          "error": "Bulk pass has expired.",
+          "enforcement": {
+            "risk": 53.0,
+            "signals": {
+              "rate": {
+                "value": 30,
+                "unit": "requests / 10 s",
+                "points": 34.5
+              },
+              "diversity": {
+                "value": 0.924,
+                "unit": "mean lexical distance",
+                "points": 18.5
+              },
+              "repetition": {
+                "value": 0.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 0.0
+              }
+            },
+            "reasons": [
+              "30 requests arrived in 10 seconds",
+              "Inputs cover unusually different wording in a short burst",
+              "Operator-approved arrivals remove 10.5 rate points; other signals remain active"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "probing",
+      "title": "Repeated probing despite approval",
+      "explanation": "A pass does not disable repetition checks; a probing batch can be blocked.",
+      "status": "passed",
+      "started_at": 1789063608.8507395,
+      "result": "Repeated probing removed the rate credit and blocked the key; 25 of 30 answers were withheld.",
+      "finished_at": 1789063615.4421096,
+      "observations": [],
+      "request_ids": [
+        "6924e24825984560ae9f87d8a946334d",
+        "eff376fa40a4464ea79051a612eafbfa",
+        "c3336804df2e4baf84b879ad7cef209d",
+        "a8402f01ce7e426eb7f2e3c3f76e5e6a",
+        "78802199137e455ea06596ac15cdf1b3",
+        "0572727f52334a129819b97d6cb8fc6e",
+        "7833c84425d3453ca3591a8641d38dff",
+        "46430dda159d4edca015353e32862b00",
+        "de043c363f8d4d69b854e966e1d9a218",
+        "f536393254984d359c2739638fb5a1a1",
+        "9c9eeff585ef464db1156d1bce2443b2",
+        "e60d8e052bf3400a94b8a863c79d5f32",
+        "106066e3c8f0469da7acd75ec45a0cc9",
+        "9be6fc7ef8b7474fa1bdcc2cd4183eb3",
+        "8dddbe0947b4461ca55949819cfa8757",
+        "2c5e528bc08b4a9eaf9ca88acf22fa8c",
+        "a03e61a9645f4f58ab155564d19f4b4d",
+        "c29064c50f3c49a5b1482264ef6155fd",
+        "0dfedb4abe4f443f808f43614dd4a024",
+        "cfa16def159645e089dabd8d02bc0da6",
+        "b855a5bdfb94464c8f5472ace5361756",
+        "5ac66d1c09a6453e85a4f1db71b9ecd8",
+        "9ef5b47fd2894c209ff85a07a84a4e86",
+        "62f048ef14c34a5a99e21c46739f25e6",
+        "178ed7ff38d24ba5bde5d782f81c9101",
+        "37f2f2720cea4e7b89957b7132429c94",
+        "0e9718f4c48440148960ec4de0ad7581",
+        "42940994995e4f45a1fb36ac448f6006",
+        "9952ab220667483783f94bd7f5905a46",
+        "d4c20579b9ca498a9908018b8f4219a5"
+      ],
+      "samples": [
+        {
+          "id": "6924e24825984560ae9f87d8a946334d",
+          "at": 1789063609.8158405,
+          "client_id": "attacker-01",
+          "conversation_id": "fd7d767e-86ab-44e4-abff-170e20edea62",
+          "question": "Explain how a neural network learns from examples. Keep answer 5 to one sentence.",
+          "reply": "A neural network learns by processing data, identifying patterns, and adjusting its weights to minimize errors.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 1014.8,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+          "bulk_pass": {
+            "id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+            "client_id": "attacker-01",
+            "limit": 30,
+            "used": 1,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for attacker-01",
+            "issued_at": 1789063609.096794,
+            "expires_at": 1789064209.096794,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 29
+          },
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        },
+        {
+          "id": "0572727f52334a129819b97d6cb8fc6e",
+          "at": 1789063609.8870132,
+          "client_id": "attacker-01",
+          "conversation_id": "fd7d767e-86ab-44e4-abff-170e20edea62",
+          "question": "Explain how a neural network learns from examples. Keep answer 3 to one sentence.",
+          "reply": null,
+          "status": "withheld",
+          "action": "block",
+          "risk": 19.8,
+          "signals": {
+            "rate": {
+              "value": 6,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.006,
+              "unit": "mean lexical distance",
+              "points": 0.1
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 19.7
+            }
+          },
+          "reasons": [
+            "Repeated or closely varied inputs suggest systematic probing",
+            "Operator-approved arrivals remove 7.5 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 5038.2,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+          "bulk_pass": {
+            "id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+            "client_id": "attacker-01",
+            "limit": 30,
+            "used": 6,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for attacker-01",
+            "issued_at": 1789063609.096794,
+            "expires_at": 1789064209.096794,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 24
+          },
+          "raw_risk": 27.3,
+          "rate_credit": 7.5,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 1045.0
+          },
+          "enforcement": {
+            "risk": 80.2,
+            "signals": {
+              "rate": {
+                "value": 18,
+                "unit": "requests / 10 s",
+                "points": 45
+              },
+              "diversity": {
+                "value": 0.011,
+                "unit": "mean lexical distance",
+                "points": 0.2
+              },
+              "repetition": {
+                "value": 1.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 35.0
+              }
+            },
+            "reasons": [
+              "18 requests arrived in 10 seconds",
+              "Repeated or closely varied inputs suggest systematic probing",
+              "Strong repeated probing removes the bulk rate allowance"
+            ]
+          }
+        },
+        {
+          "id": "78802199137e455ea06596ac15cdf1b3",
+          "at": 1789063609.8754358,
+          "client_id": "attacker-01",
+          "conversation_id": "fd7d767e-86ab-44e4-abff-170e20edea62",
+          "question": "Explain how a neural network learns from examples. Keep answer 4 to one sentence.",
+          "reply": "A neural network learns by adjusting weights based on the patterns it sees in training data, which helps it generalize from small examples to larger ones.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 13.7,
+          "signals": {
+            "rate": {
+              "value": 5,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.006,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 13.7
+            }
+          },
+          "reasons": [
+            "Repeated or closely varied inputs suggest systematic probing",
+            "Operator-approved arrivals remove 3.8 rate points; other signals remain active"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 4883.3,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+          "bulk_pass": {
+            "id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+            "client_id": "attacker-01",
+            "limit": 30,
+            "used": 5,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for attacker-01",
+            "issued_at": 1789063609.096794,
+            "expires_at": 1789064209.096794,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 25
+          },
+          "raw_risk": 17.5,
+          "rate_credit": 3.8,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 1218.4
+          },
+          "truncated": false
+        },
+        {
+          "id": "d4c20579b9ca498a9908018b8f4219a5",
+          "at": 1789063615.119423,
+          "client_id": "attacker-01",
+          "conversation_id": "fd7d767e-86ab-44e4-abff-170e20edea62",
+          "question": "Explain how a neural network learns from examples. Keep answer 26 to one sentence.",
+          "reply": null,
+          "status": "withheld",
+          "action": "block",
+          "risk": 80.3,
+          "signals": {
+            "rate": {
+              "value": 30,
+              "unit": "requests / 10 s",
+              "points": 45
+            },
+            "diversity": {
+              "value": 0.013,
+              "unit": "mean lexical distance",
+              "points": 0.3
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 35.0
+            }
+          },
+          "reasons": [
+            "30 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing",
+            "Strong repeated probing removes the bulk rate allowance"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 6.7,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+          "bulk_pass": {
+            "id": "BULK-232b05d0baa04e5c8af286a62149bab6",
+            "client_id": "attacker-01",
+            "limit": 30,
+            "used": 30,
+            "concurrency": 2,
+            "purpose": "Guided demo: 30 varied questions for attacker-01",
+            "issued_at": 1789063609.096794,
+            "expires_at": 1789064209.096794,
+            "revoked_at": null,
+            "status": "exhausted",
+            "remaining": 0
+          },
+          "raw_risk": 80.3,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 0
+          },
+          "enforcement": {
+            "risk": 80.3,
+            "signals": {
+              "rate": {
+                "value": 30,
+                "unit": "requests / 10 s",
+                "points": 45
+              },
+              "diversity": {
+                "value": 0.013,
+                "unit": "mean lexical distance",
+                "points": 0.3
+              },
+              "repetition": {
+                "value": 1.0,
+                "unit": "duplicate or near-neighbor share",
+                "points": 35.0
+              }
+            },
+            "reasons": [
+              "30 requests arrived in 10 seconds",
+              "Repeated or closely varied inputs suggest systematic probing",
+              "Strong repeated probing removes the bulk rate allowance"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "new_chat",
+      "title": "New conversation keeps restrictions",
+      "explanation": "Starting a new conversation does not erase the API key's current penalty.",
+      "status": "passed",
+      "started_at": 1789063615.7610576,
+      "result": "A fresh conversation under the same key still received the active block.",
+      "finished_at": 1789063616.2980044,
+      "observations": [],
+      "request_ids": [
+        "4bda833645614e43a9286fbfc1726664"
+      ],
+      "samples": [
+        {
+          "id": "4bda833645614e43a9286fbfc1726664",
+          "at": 1789063616.2028155,
+          "client_id": "attacker-01",
+          "conversation_id": "f0d1d8cf-803f-489e-b51e-4e39ccefb2aa",
+          "question": "Hello again",
+          "reply": null,
+          "status": "withheld",
+          "action": "block",
+          "risk": 80.3,
+          "signals": {
+            "rate": {
+              "value": 31,
+              "unit": "requests / 10 s",
+              "points": 45
+            },
+            "diversity": {
+              "value": 0.073,
+              "unit": "mean lexical distance",
+              "points": 1.5
+            },
+            "repetition": {
+              "value": 0.967,
+              "unit": "duplicate or near-neighbor share",
+              "points": 33.8
+            }
+          },
+          "reasons": [
+            "31 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing",
+            "Strong repeated probing removes the bulk rate allowance"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 4.2,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 80.3,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 0
+          },
+          "enforcement": {
+            "risk": 80.3,
+            "signals": {
+              "rate": {
+                "value": 31,
+                "unit": "requests / 10 s",
+                "points": 45
+              },
+              "diversity": {
+                "value": 0.073,
+                "unit": "mean lexical distance",
+                "points": 1.5
+              },
+              "repetition": {
+                "value": 0.967,
+                "unit": "duplicate or near-neighbor share",
+                "points": 33.8
+              }
+            },
+            "reasons": [
+              "31 requests arrived in 10 seconds",
+              "Repeated or closely varied inputs suggest systematic probing",
+              "Strong repeated probing removes the bulk rate allowance"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "isolation",
+      "title": "Other clients keep working",
+      "explanation": "Another key receives a normal answer while the probing client is blocked.",
+      "status": "passed",
+      "started_at": 1789063616.6182494,
+      "result": "A different customer received 4 while the probing key was still blocked.",
+      "finished_at": 1789063617.5274713,
+      "observations": [],
+      "request_ids": [
+        "aa5ceca4cef6480890bc86f36b96de08"
+      ],
+      "samples": [
+        {
+          "id": "aa5ceca4cef6480890bc86f36b96de08",
+          "at": 1789063617.0743995,
+          "client_id": "normal-01",
+          "conversation_id": "b3db8429-fff2-4d71-997f-90fbda6e0a04",
+          "question": "What is two plus two? Answer with only the number.",
+          "reply": "4",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 205.7,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "title": "Cooldown and retained incident evidence",
+      "explanation": "Access recovers after the real cooldown; saved incident evidence remains.",
+      "status": "passed",
+      "started_at": 1789063617.8519804,
+      "result": "The real cooldown ended, a new answer was released, and the original incident records remained.",
+      "finished_at": 1789063645.7023644,
+      "observations": [],
+      "request_ids": [
+        "337a45aa7949429c89c8547a4d38bd01"
+      ],
+      "samples": [
+        {
+          "id": "337a45aa7949429c89c8547a4d38bd01",
+          "at": 1789063645.4289281,
+          "client_id": "attacker-01",
+          "conversation_id": "a2c69dd3-c6d5-485f-9a34-4dbd43e0a086",
+          "question": "What is two plus two? Give only the number.",
+          "reply": "4",
+          "status": "answered",
+          "action": "allow",
+          "risk": 4.4,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0
+            },
+            "diversity": {
+              "value": 0.126,
+              "unit": "mean lexical distance",
+              "points": 0.3
+            },
+            "repetition": {
+              "value": 0.935,
+              "unit": "duplicate or near-neighbor share",
+              "points": 4.1
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 121.9,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 4.4,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "stop",
+      "title": "Stop a dashboard traffic test",
+      "explanation": "An operator cancels a running local test; submitted requests stay in the audit.",
+      "status": "passed",
+      "started_at": 1789063645.937493,
+      "result": "The dashboard test was cancelled; its submitted requests remain recorded, with interruptions shown as errors.",
+      "finished_at": 1789063646.4451184,
+      "observations": [
+        "This test originated from the dashboard's traffic controls, not a manual chat tab. Cancellation errors are expected demo outcomes."
+      ],
+      "request_ids": [
+        "dcfeaa7029794f0d96701516bc372495",
+        "5636e62788dc48d695969f9c484818d0",
+        "bc2edb1bf25241e0b9c905fd22700475",
+        "690a40c3c0744865bff907742607525f",
+        "69c62b103d824b9f9a6c47b40918a131",
+        "14f076957f06443182eea5b152b1aa66",
+        "4891b7ee48e1413c956ff992e7b7f6e8",
+        "df2489e9d4044bc2b046a14c395655a7"
+      ],
+      "samples": [
+        {
+          "id": "dcfeaa7029794f0d96701516bc372495",
+          "at": 1789063646.0974166,
+          "client_id": "swarm-03",
+          "conversation_id": "demo-a90aed1ea042416f85d7bbf755c4ca09",
+          "question": "Explain how a neural network learns from examples. Keep answer 8 to one sentence.",
+          "reply": null,
+          "status": "error",
+          "action": "allow",
+          "risk": 50.1,
+          "signals": {
+            "rate": {
+              "value": 8,
+              "unit": "requests / 10 s",
+              "points": 15.0
+            },
+            "diversity": {
+              "value": 0.006,
+              "unit": "mean lexical distance",
+              "points": 0.1
+            },
+            "repetition": {
+              "value": 1.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 35.0
+            }
+          },
+          "reasons": [
+            "8 requests arrived in 10 seconds",
+            "Repeated or closely varied inputs suggest systematic probing"
+          ],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": null,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 50.1,
+          "rate_credit": 0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 3,
+            "wait_ms": 0
+          },
+          "error": "Request interrupted."
+        },
+        {
+          "id": "df2489e9d4044bc2b046a14c395655a7",
+          "at": 1789063646.049601,
+          "client_id": "swarm-03",
+          "conversation_id": "demo-a90aed1ea042416f85d7bbf755c4ca09",
+          "question": "Explain how a neural network learns from examples. Keep answer 1 to one sentence.",
+          "reply": null,
+          "status": "error",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": null,
+          "incident_id": null,
+          "bulk_pass_id": null,
+          "bulk_pass": null,
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "error": "Request interrupted."
+        }
+      ]
+    },
+    {
+      "id": "persistence",
+      "title": "Saved usage survives restart",
+      "explanation": "A completed request consumes a pass slot before a controlled server restart.",
+      "status": "passed",
+      "started_at": 1789064033.4534473,
+      "result": "After an actual server restart, the pass still showed 1 / 3 used and the previous question and answer remained saved.",
+      "finished_at": 1789064058.9290535,
+      "observations": [
+        "Live risk windows, counters and alert cards reset on restart in this prototype. Saved request evidence and pass records survive."
+      ],
+      "request_ids": [
+        "d2c18d83384747d9b629cf5c181c1b6b"
+      ],
+      "samples": [
+        {
+          "id": "d2c18d83384747d9b629cf5c181c1b6b",
+          "at": 1789064034.31989,
+          "client_id": "normal-01",
+          "conversation_id": "8982f4a2-7a43-4e96-bc52-f664e0532931",
+          "question": "Why is the sky blue?",
+          "reply": "The sky is blue because of the scattering of sunlight by tiny particles in the Earth's atmosphere. This process causes the blue light to be scattered in all directions, which we see as the color of the sky.",
+          "status": "answered",
+          "action": "allow",
+          "risk": 0.0,
+          "signals": {
+            "rate": {
+              "value": 1,
+              "unit": "requests / 10 s",
+              "points": 0.0
+            },
+            "diversity": {
+              "value": 0.0,
+              "unit": "mean lexical distance",
+              "points": 0.0
+            },
+            "repetition": {
+              "value": 0.0,
+              "unit": "duplicate or near-neighbor share",
+              "points": 0.0
+            }
+          },
+          "reasons": [],
+          "policy": {
+            "version": "chat-heuristics-v2",
+            "window_seconds": 60,
+            "monitor_threshold": 35,
+            "throttle_threshold": 60,
+            "block_threshold": 80,
+            "throttle_seconds": 5,
+            "block_seconds": 30,
+            "speed_bumps": [
+              {
+                "threshold": 40,
+                "seconds": 1
+              },
+              {
+                "threshold": 50,
+                "seconds": 3
+              }
+            ],
+            "bulk_pass": {
+              "max_requests": 30,
+              "max_minutes": 60,
+              "max_concurrency": 2,
+              "repetition_override": 0.65,
+              "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+            },
+            "weights": {
+              "rate": 45,
+              "diversity": 20,
+              "repetition": 35
+            },
+            "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+          },
+          "latency_ms": 816.7,
+          "incident_id": null,
+          "bulk_pass_id": "BULK-e2b378148a6148fcb7a0979c884a019a",
+          "bulk_pass": {
+            "id": "BULK-e2b378148a6148fcb7a0979c884a019a",
+            "client_id": "normal-01",
+            "limit": 3,
+            "used": 1,
+            "concurrency": 2,
+            "purpose": "Guided demo: 3 varied questions for normal-01",
+            "issued_at": 1789064033.6610456,
+            "expires_at": 1789064633.6610456,
+            "revoked_at": null,
+            "status": "active",
+            "remaining": 2
+          },
+          "raw_risk": 0.0,
+          "rate_credit": 0.0,
+          "stage": "complete",
+          "speed_bump": {
+            "seconds": 0,
+            "wait_ms": 0
+          },
+          "truncated": false
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Inspect, filter and export evidence",
+      "explanation": "The dashboard shows actual questions, responses and signal evidence without opening code.",
+      "status": "passed",
+      "started_at": 1789064059.2116928,
+      "result": "Inspected withheld requests and signals, showed all five requirement cards, and exported 166 requests from this tour.",
+      "finished_at": 1789064059.8776455,
+      "observations": [
+        "The saved transcript artifact includes only this demonstration's conversations, not earlier customer history.",
+        "No browser JavaScript errors occurred during the tour."
+      ],
+      "request_ids": [],
+      "samples": []
+    }
+  ],
+  "updated_at": 1789064067.1497877,
+  "server_started_at": 1789063297.8293436,
+  "policy": {
+    "version": "chat-heuristics-v2",
+    "window_seconds": 60,
+    "monitor_threshold": 35,
+    "throttle_threshold": 60,
+    "block_threshold": 80,
+    "throttle_seconds": 5,
+    "block_seconds": 30,
+    "speed_bumps": [
+      {
+        "threshold": 40,
+        "seconds": 1
+      },
+      {
+        "threshold": 50,
+        "seconds": 3
+      }
+    ],
+    "bulk_pass": {
+      "max_requests": 30,
+      "max_minutes": 60,
+      "max_concurrency": 2,
+      "repetition_override": 0.65,
+      "scope": "Approved arrivals receive rate credit. At least 8 recent inputs and repetition >= 0.65 remove that credit. Diversity and repetition still count."
+    },
+    "weights": {
+      "rate": 45,
+      "diversity": 20,
+      "repetition": 35
+    },
+    "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+  },
+  "restart_requested": true,
+  "server_restarted_at": 1789064058.4851856,
+  "final_live_probe": {
+    "captured_at": 1789064067.0822332,
+    "requests": 30,
+    "withheld": 25
+  },
+  "totals": {
+    "withheld": 118,
+    "answered": 70,
+    "error": 8
+  },
+  "browser_errors": []
+}

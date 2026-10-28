@@ -1,0 +1,152 @@
+{
+  "target": "http://127.0.0.1:8765",
+  "client_id": "probe-01",
+  "request_count": 30,
+  "http_status_counts": {
+    "200": 5,
+    "429": 25
+  },
+  "client_at_capture": {
+    "id": "probe-01",
+    "name": "Evaluation client",
+    "risk": 80.8,
+    "status": "block",
+    "retry_after": 30,
+    "total": 210,
+    "answered": 25,
+    "denied": 185,
+    "errors": 0,
+    "last_seen": 1789058085.0590627,
+    "signals": {
+      "rate": {
+        "value": 30,
+        "unit": "requests / 10 s",
+        "points": 45
+      },
+      "diversity": {
+        "value": 0.04,
+        "unit": "mean lexical distance",
+        "points": 0.8
+      },
+      "repetition": {
+        "value": 1.0,
+        "unit": "duplicate or near-neighbor share",
+        "points": 35.0
+      }
+    },
+    "reasons": [
+      "30 requests arrived in 10 seconds",
+      "Repeated or closely varied inputs suggest systematic probing"
+    ]
+  },
+  "incidents": [
+    {
+      "id": "822878528f0d488f9cd33a50497e57c9",
+      "at": 1789058084.7818506,
+      "client_id": "probe-01",
+      "conversation_id": "431a5957-d3fb-49a1-a441-83ec9d19d00a",
+      "question": "Explain how a neural network learns from examples when its learning rate is 0.016. Keep the answer to one sentence.",
+      "reply": null,
+      "status": "pending",
+      "action": "block",
+      "risk": 80.7,
+      "signals": {
+        "rate": {
+          "value": 16,
+          "unit": "requests / 10 s",
+          "points": 45
+        },
+        "diversity": {
+          "value": 0.036,
+          "unit": "mean lexical distance",
+          "points": 0.7
+        },
+        "repetition": {
+          "value": 1.0,
+          "unit": "duplicate or near-neighbor share",
+          "points": 35.0
+        }
+      },
+      "reasons": [
+        "16 requests arrived in 10 seconds",
+        "Repeated or closely varied inputs suggest systematic probing"
+      ],
+      "policy": {
+        "version": "chat-heuristics-v1",
+        "window_seconds": 60,
+        "monitor_threshold": 35,
+        "throttle_threshold": 60,
+        "block_threshold": 80,
+        "throttle_seconds": 5,
+        "block_seconds": 30,
+        "weights": {
+          "rate": 45,
+          "diversity": 20,
+          "repetition": 35
+        },
+        "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+      },
+      "latency_ms": null,
+      "incident_id": "CHAT-7d0b202a55a94c849d154d53a1da94c8"
+    },
+    {
+      "id": "fea164c346dc479f9af219e7acecaf70",
+      "at": 1789058084.7243037,
+      "client_id": "probe-01",
+      "conversation_id": "431a5957-d3fb-49a1-a441-83ec9d19d00a",
+      "question": "Explain how a neural network learns from examples when its learning rate is 0.011. Keep the answer to one sentence.",
+      "reply": null,
+      "status": "pending",
+      "action": "throttle",
+      "risk": 62.0,
+      "signals": {
+        "rate": {
+          "value": 11,
+          "unit": "requests / 10 s",
+          "points": 26.2
+        },
+        "diversity": {
+          "value": 0.035,
+          "unit": "mean lexical distance",
+          "points": 0.7
+        },
+        "repetition": {
+          "value": 1.0,
+          "unit": "duplicate or near-neighbor share",
+          "points": 35.0
+        }
+      },
+      "reasons": [
+        "11 requests arrived in 10 seconds",
+        "Repeated or closely varied inputs suggest systematic probing"
+      ],
+      "policy": {
+        "version": "chat-heuristics-v1",
+        "window_seconds": 60,
+        "monitor_threshold": 35,
+        "throttle_threshold": 60,
+        "block_threshold": 80,
+        "throttle_seconds": 5,
+        "block_seconds": 30,
+        "weights": {
+          "rate": 45,
+          "diversity": 20,
+          "repetition": 35
+        },
+        "scope": "Request-side heuristics; not validated by the classifier benchmarks."
+      },
+      "latency_ms": null,
+      "incident_id": "CHAT-6c757da0e5f54565acc8608c0a0808c5"
+    }
+  ],
+  "other_client_status": 200,
+  "other_client_reply": "4",
+  "history_reset": false,
+  "note": "A real manual batch through the chatbot UI on the existing service. This simulates extraction-like querying; it does not train a clone.",
+  "example_questions": [
+    "Explain how a neural network learns from examples when its learning rate is 0.001. Keep the answer to one sentence.",
+    "Explain how a neural network learns from examples when its learning rate is 0.002. Keep the answer to one sentence.",
+    "Explain how a neural network learns from examples when its learning rate is 0.003. Keep the answer to one sentence."
+  ],
+  "variable": "learning rate from 0.001 through 0.030"
+}
