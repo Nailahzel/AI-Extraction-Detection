@@ -284,7 +284,7 @@ ModelShield can be explored for:
 - Behavioral anomaly detection.
 - Generative AI application security.
 
-## Project Status
+
 
 
 
