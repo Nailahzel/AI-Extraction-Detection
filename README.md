@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Apocalypse
 
 **A local prototype that detects suspicious attempts to collect an AI model's answers.**  
@@ -230,3 +231,6 @@ The main limits are slow extraction, unknown real-world false-positive rates, an
 The repository contains the application, tests, setup and evaluation scripts, documentation, and saved results used by the dashboards. `.gitignore` excludes local environments, model downloads, live databases, screenshots, slide exports and temporary files. Each new computer installs its own dependencies and chat model using the setup commands above. `ModelShield-submission.pdf` is retained because the classifier lab serves it as a download.
 
 Apocalypse was previously named ModelShield. Package names, environment variables and older report filenames retain that name for compatibility. Project code and the original classifier corpus use the [MIT licence](LICENSE); the model, runtime and dependencies retain their upstream licences.
+=======
+# AI-Extraction-Detection
+>>>>>>> origin/main
