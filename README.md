@@ -286,18 +286,5 @@ ModelShield can be explored for:
 
 ## Project Status
 
-**Working local cybersecurity prototype**
 
-The project includes an inference API, behavioral detection engine, automated response mechanisms, monitoring dashboard, simulated traffic generation, and evaluation scripts.
 
-It is intended for research, experimentation, and demonstration rather than direct production deployment.
-
-## Author
-
-**GitHub:** [Nailahzel](https://github.com/Nailahzel)
-
-**Repository:** [AI-Extraction-Detection](https://github.com/Nailahzel/AI-Extraction-Detection)
-
-## License
-
-This project is distributed under the terms described in the [LICENSE](LICENSE) file.
