@@ -1,4 +1,4 @@
-# ModelShield – AI Model Extraction Attack Detection
+#  AI Model Extraction Attack Detection
 
 ### AI-Powered API Security and Behavioral Threat Detection System
 
